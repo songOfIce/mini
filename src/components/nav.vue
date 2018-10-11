@@ -1,35 +1,33 @@
 <template>
     <div class="nav">
        <ul>
-           <li v-for="(item,i) in list" @click="active(i)" :key="i"><router-link to="">{{item}}</router-link></li>
+           <li v-for="(item,i) in list"  @click="active(i)" :key="i">{{item}}
+            </li>
        </ul>
     </div>
 </template>
 
 <script>
-import $ from 'jquery'
 export default {
-    name: "Nav",
     data(){
         return {
-            list: ["推荐","手机","电视","智能","笔记本","家电","^"]
+            list: ["推荐","手机","电视","智能","笔记本","家电","^"],
+            router: ['commend','phone','tv','smart','laptop','products','']
         }
     },
     methods:{
         active(i){
+            this.$router.push("/home?name="+this.router[i]);
             var lis = $(".nav ul li");
             for(var li of lis){
                 li.className = "";
-                li.children[0].className = "";
             }
             lis[i].className = "li-active";
-            lis[i].children[0].className = "active-link";
         }
     },
     mounted(){
         var liFirst = $(".nav ul li")[0];
         liFirst.className = "li-active";
-        liFirst.children[0].className = "active-link";
     }
 }
 </script>
@@ -50,14 +48,15 @@ export default {
     font-size: 16px;
     padding-bottom: 5px;
 }
-.nav>ul>li a{
+.link{
     color: #747474;
     
 }
 .li-active{
+    color: #ff6b00;
     border-bottom: 2px solid #ff6b00;
 }
 #app .active-link{
-    color: #ff6b00;
+    color: #ff6b00 ;
 }
 </style>

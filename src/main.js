@@ -9,12 +9,13 @@ Vue.config.productionTip = false
 // 挂载MintUI
 
 // 引入jQuery
-
+import $ from 'jquery'
+window.$ = $
 // 引入公用的css
 import './assets/css/mui.css'
 import "./assets/fonts/mui.ttf"
 import 'mint-ui/lib/style.css'
-import './assets/css/base.css'
+// import './assets/css/base.css'
 new Vue({
   router,
   store,
