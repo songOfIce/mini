@@ -2,20 +2,23 @@ import Vue from 'vue'
 import App from './App.vue'
 import router from './router'
 import store from './store'
-
-// 完全引入mint-UI
-// import {} from 'mint-ui'
+// 引入公用的css
+import 'mint-ui/lib/style.css'
+import './lib/mui/css/mui.css'
+import "./lib/mui/fonts/mui.ttf"
+import './lib/mui/css/icons-extra.css'
 Vue.config.productionTip = false
-// 挂载MintUI
-
 // 引入jQuery
 import $ from 'jquery'
 window.$ = $
-// 引入公用的css
-import './assets/css/mui.css'
-import "./assets/fonts/mui.ttf"
-import 'mint-ui/lib/style.css'
-// import './assets/css/base.css'
+import VueResource from 'vue-resource';
+Vue.use(VueResource);
+// 引入mint-UI
+import MintUI from 'mint-ui';
+Vue.use(MintUI)
+// 挂载MintUI
+// Vue.component(Swipe.name, Swipe);
+// Vue.component(SwipeItem.name, SwipeItem);
 new Vue({
   router,
   store,

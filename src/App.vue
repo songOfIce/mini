@@ -2,31 +2,31 @@
   <div id="app">
     <router-view/>
      <div class="app-footer">
-            <div class="app-footer-item" @click="active()">
+            <div class="app-footer-item" @click="active(0)">
                 <router-link to="/home">
-                    <img :src="list[0].img1">
-                    <img class="active-img" src="list[0].img2">
-                    <p>首页</p>
+                    <img class="hide" :src="list[0].img1">
+                    <img  :src="list[0].img2">
+                    <p class="active">首页</p>
                 </router-link>
             </div>
-            <div class="app-footer-item">
-                <router-link to="/class" @click="active()">
+            <div class="app-footer-item" @click="active(1)">
+                <router-link to="/class">
                     <img  :src="list[1].img1">
-                    <img class="active-img"  src="list[0].img2">
+                    <img class="hide"  :src="list[1].img2">
                     <p>分类</p>
                 </router-link>
             </div>
-            <div class="app-footer-item">
+            <div class="app-footer-item" @click="active(2)">
                 <router-link to="/car">
                     <img  :src="list[2].img1">
-                    <img class="active-img"  src="list[0].img2">
+                    <img class="hide"  :src="list[2].img2">
                     <p>购物车</p>
                 </router-link>
             </div>
-            <div class="app-footer-item">
+            <div class="app-footer-item" @click="active(3)">
                 <router-link to="/user">
                     <img  :src="list[3].img1">
-                    <img class="active-img"  src="list[0].img2">
+                    <img class="hide"  :src="list[3].img2">
                     <p>我的</p>
                 </router-link>
             </div>
@@ -43,16 +43,31 @@ export default {
                 {img1: "../../img/class.png",img2: "../../img/class1.png"},
                 {img1: "../../img/car.png",img2: "../../img/car1.png"},
                 {img1: "../../img/user.png",img2: "../../img/user1.png"},
-            ]
+            ],
+            path:["/home","/class","/car","/user"]
         }
     },
     methods:{
-        active(){
-            var achildList = $(".app-footer-item")[0].children[0].childNodes;
-            
-            console.log($(".app-footer-item")[0].children[0].childNodes)
+        active(id){
+            var achildList = $(".app-footer-item")[id].children[0].childNodes;
+            for(var i=0;i<4;i++){
+                var div = $(".app-footer-item")[i].children[0].childNodes;
+                $(div[0]).show();
+                $(div[1]).hide();
+                $(div[2]).removeClass("active");
+            }
+            $(achildList[0]).hide();
+            $(achildList[1]).show();
+            $(achildList[2]).addClass("active");
         }
-    }
+    },
+    mounted(){
+        // var achildList = $(".app-footer-item")[0].children[0].childNodes;
+        // $(achildList[0]).hide();
+        // $(achildList[1]).show();
+        // $(achildList[2]).addClass("active"); 
+    },
+    
 }
 </script>
 
@@ -64,6 +79,7 @@ export default {
   -moz-osx-font-smoothing: grayscale;
   /* text-align: center; */
   color: #2c3e50;
+  margin: 0 auto;
 }
 /* 底部导航 */
 .app-footer{
@@ -90,7 +106,7 @@ export default {
 .active{
     color: #F56D02;
 }
-.active-img{
+.hide{
     display: none;
 }
 </style>

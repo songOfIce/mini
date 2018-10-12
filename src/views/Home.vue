@@ -2,7 +2,6 @@
   <div class="home">
     <header-box/>
     <nav-box/>
-    <h1>这是首页</h1>
     <commend-box id="commend" />
     <phone-box id="phone" class="hide"/>
     <laptop-box id="laptop" class="hide" />
