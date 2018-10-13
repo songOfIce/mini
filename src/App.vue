@@ -1,10 +1,10 @@
 <template>
   <div id="app">
     <router-view/>
-     <div class="app-footer">
+    <div class="app-footer">
             <div class="app-footer-item" @click="active(0)">
                 <router-link to="/home">
-                    <img class="hide" :src="list[0].img1">
+                    <img class="hide"  :src="list[0].img1">
                     <img  :src="list[0].img2">
                     <p class="active">首页</p>
                 </router-link>
@@ -31,7 +31,7 @@
                 </router-link>
             </div>
         </div>
-  </div>
+    </div>  
 </template>
 
 <script>
@@ -59,13 +59,9 @@ export default {
             $(achildList[0]).hide();
             $(achildList[1]).show();
             $(achildList[2]).addClass("active");
-        }
+        },
     },
     mounted(){
-        // var achildList = $(".app-footer-item")[0].children[0].childNodes;
-        // $(achildList[0]).hide();
-        // $(achildList[1]).show();
-        // $(achildList[2]).addClass("active"); 
     },
     
 }
