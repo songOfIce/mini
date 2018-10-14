@@ -6,7 +6,7 @@ Mock.mock('/home/banner',{
     }]
 })
 
-Mock.mock('/home/icon',{
+Mock.mock('/api/data',{
     'stu|5':[{
         'id|0-10000':0,
         'name': '@ctitle(2,10)',
@@ -15,6 +15,18 @@ Mock.mock('/home/icon',{
         'time': "@time"
     }]
 });
+Mock.mock('/home/icon',{
+    'icon|5':[{
+        'id|+1': 1,
+        'img': "@image('82x87',#00c1de)",
+    }],
+    'imglist|10': [{
+        'id|+1': 1,
+        'img': "@image('206x145',#sdf231)",
+        'imgbig': "@image('206x292',#00c1sdw)"
+
+    }]
+})
 Mock.setup({
     timeout: 0
 })

@@ -12,8 +12,8 @@
 </template>
 
 <script>
-import header from '../components/Header.vue'
-import nav from '../components/Nav.vue'
+import header from '../components/header.vue'
+import nav from '../components/nav.vue'
 import commend from '../components/home/Commend.vue'
 import phone from '../components/home/Phone.vue'
 import laptop from '../components/home/Laptop.vue'
@@ -55,6 +55,9 @@ export default {
 }
 </script>
 <style scoped>
+    .home{
+        padding-bottom: 59px;
+    }
     .hide{
         display: none;
     }
