@@ -2,20 +2,25 @@
     <div class="app-commend">
         <!-- 组件轮播 -->
         <mt-swipe :auto="4000" class="mint">
-            <mt-swipe-item v-for="(item,i) in this.list" :key="i">
-                <router-link to=""><img :src="item.img_url" alt=""></router-link>
+            <mt-swipe-item v-for="(item,i) in list" :key="i">
+                <router-link to="#"><img :src="item.img_url" alt=""></router-link>
             </mt-swipe-item>
         </mt-swipe>
         <Cell :cell="cell" />
         <!-- 手机楼层 -->
         <div class="commend-floor" v-if="imglist[0]">
-            <div><img :src="imglist[0].imgbig" alt=""></div>
+            <div><router-link to="#"><img :src="imglist[0].imgbig" alt=""></router-link></div>
             <div>
-                <div><img :src="imglist[0].img" alt=""></div>
-                <div><img  :src="imglist[1].img" alt=""></div>
+                <div class="commend-floor-item"><router-link to="#"><img :src="imglist[0].img" alt=""></router-link></div>
+                <div class="commend-floor-item"><router-link to="#"><img :src="imglist[1].img" alt=""></router-link></div>
             </div>
         </div>
-        <List :commendimglist="imglist" />
+        <h3>超值推荐</h3>
+        <List :imglist="imglist" />
+         <h3>小米电视</h3>
+        <List :imglist="imgTvList" />
+        <h3>明星单品</h3> 
+        <List :imglist="imgStarList" />
     </div>
 </template>
 <script>
@@ -27,7 +32,9 @@ export default {
     return {
       list: [],
       cell: [],
-      imglist: []
+      imglist: [],
+      imgTvList: [],
+      imgStarList: []
     };
   },
   methods: {
@@ -36,10 +43,12 @@ export default {
         this.list = data.data.banner;
         // console.log(data);
       });
-      this.$http.get("/home/icon").then(res => {
-        console.log(res);
+      this.$http.get("http://localhost:8080/home/commend").then(res => {
+        // console.log(res);
         this.cell = res.data.icon;
         this.imglist = res.data.imglist;
+        this.imgTvList = res.data.imgTvList;
+        this.imgStarList = res.data.imgStarList;
       });
     }
   },
@@ -62,25 +71,22 @@ export default {
 }
 .app-commend img {
   width: 100%;
+  height:100%;
 }
-.no-active {
-  transform: translateX(0);
-}
-.active {
-  transform: translateX(-100%);
-  transition: all 2s;
-}
-.hide {
-  transform: translateX(100%);
-}
+
 /* 各推荐的楼层 */
 .commend-floor {
   display: flex;
   justify-content: space-between;
   padding-top: 15px;
+  height: 293px;
 }
 .commend-floor > div {
-  width: 49%;
+  width: 49.5%;
+  height: 100%;
+}
+.commend-floor-item{
+    height: 50%;
 }
 </style>
 

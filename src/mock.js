@@ -2,7 +2,7 @@
 const Mock = require('mockjs');
 Mock.mock('/home/banner',{
     'banner|3': [{
-        'img_url': "@image('300x200',@color)"
+        'img_url': "@image('720x360',@color)"
     }]
 })
 
@@ -15,18 +15,67 @@ Mock.mock('/api/data',{
         'time': "@time"
     }]
 });
-Mock.mock('/home/icon',{
+Mock.mock('http://localhost:8080/home/commend',{
     'icon|5':[{
         'id|+1': 1,
-        'img': "@image('82x87',@color())",
+        'img': "@image('144x152',@color())",
     }],
     'imglist|10': [{
         'id|+1': 1,
         'title': '@ctitle(3,8)',
         'subtitle': '@ctitle(8,12)',
-        'img': "@image('206x145',#sdf231)",
-        'imgbig': "@image('400x292',#00c1sdw)",
-        'price|900-3500': 901,
+        'img': "@image('358x252',#sdf231)",
+        'imgbig': "@image('358x508',@color)",
+        'img': "@image('360x360',@color)",
+        'nowPrice|900-3500': 901,
+        // 'oldPrice':''
+    }],
+    'imgTvList|4': [{
+      'id|+1': 1,
+      'title': '@ctitle(3,8)',
+      'subtitle': '@ctitle(8,12)',
+      "img": "@image('360x360',@color)",
+      'nowPrice|900-3500': 901,
+    //   'oldPrice':''
+    }],
+    'imgStarList|6': [{
+      'id|+1': 1,
+      'title': '@ctitle(3,8)',
+      'subtitle': '@ctitle(8,12)',
+      "img": "@image('360x360',@color)",
+      'nowPrice|900-3500': 901,
+    //   'oldPrice':''
+    }]
+})
+// 首页手机页面数据
+Mock.mock("http://localhost:8086/home/img/phone",{
+    'banner|2': [{
+        'id|+1': 1,
+        'img': "@image(720x360,@color)"
+    }],
+    'imglist|18': [{
+        "id|+1": 1,
+        "img": "@image('360x360',@color)",
+        'title': '@ctitle(3,8)',
+        'subtitle': '@ctitle(8,12)',
+        'nowPrice|900-3500': 900,
+        'oldPrice|1400-4500': 1400
+    }]
+})
+//首页TV的数据
+Mock.mock("http://localhost:8086/home/img/tv",{
+    'imglist|18': [{
+        "id|+1": 1,
+        'imgbig': "@image('720x360',@color)",
+        "img": "@image('360x360',@color)",
+        'title': '@ctitle(3,8)',
+        'subtitle': '@ctitle(8,12)',
+        'nowPrice|900-3500': 900,
+        'oldPrice|1400-4500': 1400
+    }],
+    'cell|5':[{
+        'id|+1': 1,
+        'img': "@image('144x152',@color())",
     }]
 })
 Mock.setup({
