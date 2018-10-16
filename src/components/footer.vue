@@ -1,11 +1,11 @@
 <template>
     <div class="app-footer">
         <div class="app-footer-item" @click="active(0)">
-            <router-link to="/home">
-                <img class="hide"  :src="list[0].img1">
-                <img  :src="list[0].img2">
-                <p class="active">首页</p>
-            </router-link>
+          <router-link to="/home">
+            <img class="hide"  :src="list[0].img1">
+            <img  :src="list[0].img2">
+            <p class="active">首页</p>
+          </router-link>
         </div>
         <div class="app-footer-item" @click="active(1)">
             <router-link to="/class">
@@ -33,31 +33,31 @@
 
 <script>
 export default {
-    data () {
-        return {
-            list:[
-                {img1: "../../img/index.png",img2: "../../img/index1.png"},
-                {img1: "../../img/class.png",img2: "../../img/class1.png"},
-                {img1: "../../img/car.png",img2: "../../img/car1.png"},
-                {img1: "../../img/user.png",img2: "../../img/user1.png"},
-            ],
-            path:["/home","/class","/car","/user"]
-        }
+  data () {
+    return {
+      list:[
+        {img1: "img/index.png",img2: "img/index1.png"},
+        {img1: "img/class.png",img2: "img/class1.png"},
+        {img1: "img/car.png",img2: "img/car1.png"},
+        {img1: "img/user.png",img2: "img/user1.png"},
+      ],
+      path:["/home","/class","/car","/user"]
+    }
+  },
+  methods:{
+    active(id){
+      var achildList = $(".app-footer-item")[id].children[0].childNodes;
+      for(var i=0;i<4;i++){
+        var div = $(".app-footer-item")[i].children[0].childNodes;
+        $(div[0]).show();
+        $(div[1]).hide();
+        $(div[2]).removeClass("active");
+      }
+      $(achildList[0]).hide();
+      $(achildList[1]).show();
+      $(achildList[2]).addClass("active");
     },
-    methods:{
-        active(id){
-            var achildList = $(".app-footer-item")[id].children[0].childNodes;
-            for(var i=0;i<4;i++){
-                var div = $(".app-footer-item")[i].children[0].childNodes;
-                $(div[0]).show();
-                $(div[1]).hide();
-                $(div[2]).removeClass("active");
-            }
-            $(achildList[0]).hide();
-            $(achildList[1]).show();
-            $(achildList[2]).addClass("active");
-        },
-    },
+  },
 }
 </script>
 
