@@ -78,6 +78,55 @@ Mock.mock("http://localhost:8086/home/img/tv",{
         'img': "@image('144x152',@color())",
     }]
 })
+//首页智能的数据
+Mock.mock("http://localhost:8086/home/img/smart",{
+    'cell|5':[{
+        'id|+1': 1,
+        'img': "@image('144x152',@color())",
+    }],
+    'imglist|18': [{
+        "id|+1": 1,
+        'imgbig': "@image('720x360',@color)",
+        "img": "@image('360x360',@color)",
+        'title': '@ctitle(3,8)',
+        'subtitle': '@ctitle(8,12)',
+        'nowPrice|900-3500': 900,
+        'oldPrice|1400-4500': 1400
+    }]
+})
+//首页笔记本的数据
+Mock.mock("http://localhost:8086/home/img/laptop",{
+    'cell|5':[{
+        'id|+1': 1,
+        'img': "@image('144x152',@color())",
+    }],
+    'imglist|18': [{
+        "id|+1": 1,
+        'imgbig': "@image('720x360',@color)",
+        "img": "@image('360x360',@color)",
+        'title': '@ctitle(3,8)',
+        'subtitle': '@ctitle(8,12)',
+        'nowPrice|900-3500': 900,
+        'oldPrice|1400-4500': 1400
+    }]
+})
+//首页家电的数据
+Mock.mock("http://localhost:8086/home/img/products",{
+    'cell|5':[{
+        'id|+1': 1,
+        'img': "@image('144x152',@color())",
+    }],
+    'imglist|18': [{
+        "id|+1": 1,
+        'imgbig': "@image('720x360',@color)",
+        "img": "@image('360x360',@color)",
+        'title': '@ctitle(3,8)',
+        'subtitle': '@ctitle(8,12)',
+        'nowPrice|900-3500': 900,
+        'oldPrice|1400-4500': 1400
+    }]
+})
+
 Mock.setup({
     timeout: 0
 })

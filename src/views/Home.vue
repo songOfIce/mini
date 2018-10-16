@@ -55,8 +55,11 @@ export default {
 }
 </script>
 <style scoped>
+    body{
+        background: #F5F5F5;
+    }
     .home{
-        padding-bottom: 59px;
+        padding-bottom: 60px;
     }
     .hide{
         display: none;

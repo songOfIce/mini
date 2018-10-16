@@ -21,7 +21,7 @@ export default {
         getData () {
             this.$http.get("http://localhost:8086/home/img/tv")
                 .then(res => {
-                    console.log(res)
+                    // console.log(res)
                     this.cell = res.data.cell;
                     this.list = res.data.imglist;
                 })
