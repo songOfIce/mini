@@ -36,10 +36,10 @@ export default {
   data () {
     return {
       list:[
-        {img1: "img/index.png",img2: "img/index1.png"},
-        {img1: "img/class.png",img2: "img/class1.png"},
-        {img1: "img/car.png",img2: "img/car1.png"},
-        {img1: "img/user.png",img2: "img/user1.png"},
+        {img1: "../img/index.png",img2: "../img/index1.png"},
+        {img1: "../img/class.png",img2: "../img/class1.png"},
+        {img1: "../img/car.png",img2: "../img/car1.png"},
+        {img1: "../img/user.png",img2: "../img/user1.png"},
       ],
       path:["/home","/class","/car","/user"]
     }

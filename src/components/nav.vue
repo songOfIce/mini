@@ -17,7 +17,7 @@ export default {
     },
     methods:{
         active(i){
-            this.$router.push("/home?name="+this.router[i]);
+            this.$router.push("/home/"+this.router[i]);
             var lis = $(".nav ul li");
             for(var li of lis){
                 li.className = "";
@@ -33,7 +33,9 @@ export default {
 </script>
 
 <style scoped>
-
+.nav{
+    background: #F2F2F2;
+}
 
 .nav ul{    
     list-style: none;
@@ -41,8 +43,8 @@ export default {
     justify-content: space-around;
     flex-wrap: nowrap;
     overflow-x: hidden;
-    padding: 0;
-    margin: 10px 0;
+    padding: 10px 0;
+    margin: 0;
 }
 .nav ul li{
     font-size: 16px;

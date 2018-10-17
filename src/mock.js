@@ -126,7 +126,18 @@ Mock.mock("http://localhost:8086/home/img/products",{
         'oldPrice|1400-4500': 1400
     }]
 })
-
+//分类页数据
+Mock.mock("http://localhost:8086/class",{
+    'content|23': [{
+        'id|+1': 1,
+        'title': '@ctitle(3)',
+    }],
+    'page|6': [{
+        'id|+1': 1,
+        'subtitle': '@ctitle(6)',
+        'img': "@image(120x120,@color)"
+    }]
+})
 Mock.setup({
     timeout: 0
 })

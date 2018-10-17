@@ -4,7 +4,7 @@
             <router-link to="/home"><img src=".././assets/logo.png" alt="logo"></router-link>
         </div>
         <div class="header-center">
-            <img src=".././assets/search.png" alt="">
+            <img src="http://localhost:8085/img/search.png" alt="">
             <div class="header-center-box">
                 搜索商品名称
             </div>
@@ -29,6 +29,7 @@ export default {
     justify-content: space-between;
     height: 45px;
     padding-top: 5px;
+    background: #F2F2F2;
 }
 .header-left{
     padding: 10px 20px;
