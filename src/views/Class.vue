@@ -11,24 +11,30 @@
     <div class="content">
         <div class="sidebar">
             <ul>
-                <li v-for="(item,i) in side" :key="i">{{item}}</li>
+                <li @click="active(i)" v-for="(item,i) in side" :key="i">
+                    <a :class="i==0?'active':''" :href="'#m'+i">{{item}}</a>
+                </li>
             </ul>
         </div>
         <div class="content-right">
             <div class="content-info" v-for="(t,index) in box" :key="index">
-                <p><span>{{t.title}}</span></p>
+                <div><a :name="'m'+index" class="anchor"><img :src="t.img" alt=""></a></div>
+                <p>{{t.title}}</p>
                 <div class="content-item">
                     <ul>
                         <li v-for="(item,i) in page" :key="i">
-                            <div>
-                                <img :src="item.img">
-                            </div>
-                            <p>{{item.subtitle}}</p>
+                            <router-link to="javascript:;">
+                                <div>
+                                    <img :src="item.img">
+                                </div>
+                                <p>{{item.subtitle}}</p>
+                            </router-link>
                         </li>
                     </ul>
                 </div>
             </div>
         </div>
+        <a name="div" style="padding-bottom:56px"></a>
     </div>
   </div>
 </template>
@@ -53,31 +59,43 @@ export default {
                     this.page = res.data.page;
                 })
         },
-        disable () {
-            var side = document.querySelector(".sidebar");
-            var h = document.querySelector(".sidebar ul li:last-child")
-            console.log(h)
-            
-            side.onmousewheel = function(e){
-                var y = e.clientY;
-                console.log(y)
-                // if(y<)
-                console.log(e)
+        active(i) {
+            // e.preventDefault();
+            var a = document.querySelectorAll(".sidebar>ul>li>a");
+            for(let i = 0;i<a.length;i++){
+                a[i].className = "";
             }
+            a[i].className = "active";
         }
+        // getmouse() {
+            // onmousescr
+        // }
     },
     created () {
         this.getData();
-       
+        
     },
     mounted() {
-         this.disable();
+        window.onscroll = function(){
+            var t = document.documentElement.scrollTop;
+            console.log(t)
+            if(t>1000){
+                var a = document.querySelectorAll(".sidebar>ul>li>a");
+                console.log(a[a.length-1])
+                a[10].scrollIntoView(false);
+            }
+        }
     }
-
 }
 </script>
 
 <style scoped>
+/* 激活的状态 start */
+.sidebar ul li .active{
+    font-size: 18px;
+    color: #f56d03;
+}
+/* end */
 .fenlei{
     position: relative;
     background: #fff;
@@ -90,59 +108,67 @@ export default {
     font-size: 20px;
     background: #F2F2F2;
     color: #000;
-    z-index: 10;
+    z-index: 100;
 }
 .mintui{
     font-size: 30px !important;
-}
-.content{
-    display: flex;
-    justify-content: space-between;
-    padding-top: 50px;
 }
 .sidebar{
     position: fixed;
     top: 50px;
     left: 0;
-    bottom: 52px;
-    /* overflow-y: hidden; */
-    /* height: 800px; */
+    bottom: 65px;
+    width: 20%;
+    border-right: 1px solid #F1F1F1;
+    overflow: hidden;
 }
 
 .sidebar ul{
     position: absolute;
-    top: 50px;
-    width: 20%;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    width: 110%;     
     list-style: none;
     padding: 0;
     margin:0;
-    /* overflow-y: auto; */
+    overflow-y: auto;
 }
 .sidebar ul li{
     padding: 20px 0;
     text-align: center;
     font-size: 16px;
 }
+.sidebar ul li a{
+    color: #3C3C3C;
+}
 /* 内容 */
 .content-right{
-        width: 100%;
-        padding: 20px 0 0 20%;
-    }
-    .content-info{
-        text-align: center;
-    }
-    .content-item ul{
-        list-style: none;
-        display: flex;
-        justify-content: space-around;
-        flex-wrap: wrap;
-        padding: 0;
-    }
-    .content-item ul li{
-        width: 30%;
-    }
-    .content-item ul li img{
-        width: 100%;
-    }
+    width: 100%;
+    padding: 65px 10px 65px 23%;
+}
+.content-info{
+    text-align: center;
+    
+}
+.content-info a.anchor{
+    display: block;
+    height: auto;
+    border-top: 50px solid transparent;
+    margin-top: -50px;
+}
+.content-item ul{
+    list-style: none;
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
+    padding: 0;
+}
+.content-item ul li{
+    width: 30%;
+}
+.content-info img{
+    width: 100%;
+}
 </style>
 

@@ -31,5 +31,4 @@ export default {
   margin: 0 auto;
   background: #fff;
 }
-
 </style>

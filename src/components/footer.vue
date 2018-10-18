@@ -72,6 +72,7 @@ export default {
     width: 100%;
     background: #fff;
     padding: 5px;
+    z-index: 100;
 }
 .app-footer img{
     width: 23px;

@@ -9,6 +9,7 @@ import 'mint-ui/lib/style.css'
 import './lib/mui/css/mui.css'
 import "./lib/mui/fonts/mui.ttf"
 import './lib/mui/css/icons-extra.css'
+import './lib/base.css'
 Vue.config.productionTip = false
 // 原型加入axios
 Vue.prototype.$http = Axios

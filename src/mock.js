@@ -131,6 +131,7 @@ Mock.mock("http://localhost:8086/class",{
     'content|23': [{
         'id|+1': 1,
         'title': '@ctitle(3)',
+        'img': "@image(500x200,@color)"
     }],
     'page|6': [{
         'id|+1': 1,
