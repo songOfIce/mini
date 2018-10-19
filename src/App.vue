@@ -20,7 +20,7 @@ export default {
 }
 </script>
 
-<style scoped>
+<style>
 #app {
   max-width: 730px;
   font-family: 'Avenir', Helvetica, Arial, sans-serif;
@@ -31,4 +31,5 @@ export default {
   margin: 0 auto;
   background: #fff;
 }
+
 </style>

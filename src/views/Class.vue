@@ -82,7 +82,7 @@ export default {
             if(t>1000){
                 var a = document.querySelectorAll(".sidebar>ul>li>a");
                 console.log(a[a.length-1])
-                a[10].scrollIntoView(false);
+                // a[10].scrollIntoView(false);
             }
         }
     }
@@ -100,16 +100,7 @@ export default {
     position: relative;
     background: #fff;
 }
-.mint-header{
-    position: fixed;
-    top: 0;
-    height: 50px;
-    width: 100%;
-    font-size: 20px;
-    background: #F2F2F2;
-    color: #000;
-    z-index: 100;
-}
+
 .mintui{
     font-size: 30px !important;
 }

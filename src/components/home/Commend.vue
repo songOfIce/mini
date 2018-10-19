@@ -22,8 +22,9 @@
         <h3>明星单品</h3> 
         <List :imglist="imgStarList" />
         <div>
-            <img src="img/understand.png" alt="">
+            <img src="http://localhost:8085/img/understand.png" alt="">
         </div>
+        
     </div>
 </template>
 <script>
@@ -33,11 +34,12 @@ export default {
   name: "Commend",
   data() {
     return {
-      list: [],
-      cell: [],
-      imglist: [],
-      imgTvList: [],
-      imgStarList: []
+        display: null,
+        list: [],
+        cell: [],
+        imglist: [],
+        imgTvList: [],
+        imgStarList: []
     };
   },
   methods: {
@@ -57,6 +59,13 @@ export default {
   },
   created() {
     this.getData();
+    window.onscroll = function () {
+            var t = document.documentElement.scrollTop;
+            var top = document.querySelector(".go-top");
+            if (t > 1200) {
+                top.style.display = "block"
+            }else{ top.style.display = "none"}
+    }
   },
   components: {
     Cell,
@@ -97,6 +106,7 @@ export default {
     background: #fff;
     color: #898989;
 }
+
 </style>
 
 

@@ -4,18 +4,21 @@ import router from './router'
 import store from './store'
 import Axios from 'axios'
 import Mock from './mock'
+import common from './assets/common'
 // 引入公用的css
 import 'mint-ui/lib/style.css'
 import './lib/mui/css/mui.css'
 import "./lib/mui/fonts/mui.ttf"
 import './lib/mui/css/icons-extra.css'
-import './lib/base.css'
+import './assets/base.css'
 Vue.config.productionTip = false
+//公共js
+Vue.prototype.common = common;
 // 原型加入axios
 Vue.prototype.$http = Axios
 // 引入jQuery
 import $ from 'jquery'
-window.$ = $
+Vue.prototype.$ = $
 // import VueResource from 'vue-resource';
 // Vue.use(VueResource);
 // 引入mint-UI

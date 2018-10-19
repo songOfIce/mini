@@ -18,7 +18,7 @@ export default {
     methods:{
         active(i){
             this.$router.push("/home/"+this.router[i]);
-            var lis = $(".nav ul li");
+            var lis = this.$(".nav ul li");
             for(var li of lis){
                 li.className = "";
             }
@@ -26,7 +26,7 @@ export default {
         }
     },
     mounted(){
-        var liFirst = $(".nav ul li")[0];
+        var liFirst = this.$(".nav ul li")[0];
         liFirst.className = "li-active";
     }
 }

@@ -1,0 +1,19 @@
+* {
+    margin: 0;
+    box-sizing: border-box;
+}
+body{
+    background: #fff;
+}
+/* 头部导航 start */
+.mint-header {
+    position: fixed;
+    top: 0;
+    height: 50px;
+    width: 100%;
+    font-size: 20px;
+    background: #F2F2F2;
+    color: #000;
+    z-index: 100;
+}
+/* end */
