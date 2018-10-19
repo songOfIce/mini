@@ -24,12 +24,11 @@ export default {
         this.$router.push('/home/commend');
         window.onscroll = function () {
             var t = document.documentElement.scrollTop;
-            console.log(t)
-            // var top = document.querySelector(".go-top");
-            // if (t > 1200) {
-            //     top.style.display = "block"
-            // }else{ top.style.display = "none"}
-    }
+            var top = document.querySelector(".go-top");
+            if (t > 1200) {
+                top.style.display = "block"
+            }else{ top.style.display = "none"}
+        }
     },
     components:{
         "header-box":header,
