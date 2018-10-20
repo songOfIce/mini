@@ -43,12 +43,16 @@ export default {
 }.login a span:last-child{
     color: #757575;
 }
+                
 .login a img{
     transform: rotateY(180deg) scale(.6);
     vertical-align: middle;
     margin-bottom: 3px;
-}
+}                                 
 .car-item span{
+    display: inline-block;
+    width: 100%;
+    height: 200px;
     background: url('http://localhost:8085/img/cartnull.png') no-repeat;
 }
 </style>

@@ -67,21 +67,17 @@ export default {
             }
             a[i].className = "active";
         }
-        // getmouse() {
-            // onmousescr
-        // }
     },
     created () {
         this.getData();
-        
     },
     mounted() {
         window.onscroll = function(){
             var t = document.documentElement.scrollTop;
-            console.log(t)
+            // console.log(t)
             if(t>1000){
                 var a = document.querySelectorAll(".sidebar>ul>li>a");
-                console.log(a[a.length-1])
+                // console.log(a[a.length-1])
                 // a[10].scrollIntoView(false);
             }
         }
