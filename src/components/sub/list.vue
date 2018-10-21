@@ -22,9 +22,9 @@ export default {
 </script>
 
 <style scoped>
-    .app-list{
-        /* width: 100%; */
-    }
+    /*.app-list{
+         width: 100%; 
+    }*/
     .list{
         display: flex;
         justify-content: space-between;
