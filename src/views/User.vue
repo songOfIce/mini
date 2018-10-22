@@ -23,14 +23,17 @@
                 </a>
             </div>
         </div>
+        <div class="fenge"></div>
         <div class="user-login-four">
             <div class="user-login-four-item"><span><img class="icon" src="http://localhost:8085/img/huiyuan.png" alt="123">会员中心</span><img class="back" src="http://localhost:8085/img/back.png" alt=""></div>
             <div class="user-login-four-item"><span><img class="icon" src="http://localhost:8085/img/me.png" alt="123">我的优惠</span><img class="back" src="http://localhost:8085/img/back.png" alt=""></div>
         </div>
+        <div class="fenge"></div>
         <div class="user-item">
             <div class="user-login-five-item"><span><img class="icon" src="http://localhost:8085/img/serve.png" alt="123">服务中心</span><img class="back" src="http://localhost:8085/img/back.png" alt=""></div>
             <div class="user-login-five-item"><span><img class="icon" src="http://localhost:8085/img/home.png" alt="123">小米之家</span><img class="back" src="http://localhost:8085/img/back.png" alt=""></div>
         </div>
+        <div class="fenge"></div>
     </div>
 </template>
 
@@ -38,6 +41,9 @@
 export default {
     data(){
         return {}
+    },
+    created() {
+        window.onscroll = null;
     }
 }
 </script>
@@ -82,6 +88,14 @@ export default {
 .user-login-three div img{
     width: 30px;
     height: 30px;
+}
+.fenge{
+    height: 15px;
+    background: #f5f5f5;
+}
+
+.fenge:last-child{
+    height: 150px;
 }
 .user-login-four-item, .user-login-five-item{
     display: flex;

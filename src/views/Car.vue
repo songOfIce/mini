@@ -61,6 +61,9 @@ export default {
 </script>
 
 <style scoped>
+.car{
+    padding-bottom: 65px;
+}
 .login{
     padding-top: 50px;
 }

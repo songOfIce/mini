@@ -2,7 +2,8 @@
 npm install
 #运行项目
 npm run serve
-
+#打包
+npm run build
 #开发中遇到的问题
 1.如何监听本页面地址栏url,和上一页面url
     解决: 通过$route(to,from){
