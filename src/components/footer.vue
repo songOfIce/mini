@@ -17,26 +17,26 @@ export default {
         {
           name: "首页",
           path: "/home/commend",
-          img1: "http://localhost:8085/img/index.png",
-          img2: "http://localhost:8085/img/index1.png"
+          img1: "../img/index.png",
+          img2: "../img/index1.png"
         },
         {
           name: "分类",
           path: "/class",
-          img1: "http://localhost:8085/img/class.png",
-          img2: "http://localhost:8085/img/class1.png"
+          img1: "../img/class.png",
+          img2: "../img/class1.png"
         },
         {
           name: "购物车",
           path: "/car",
-          img1: "http://localhost:8085/img/car.png",
-          img2: "http://localhost:8085/img/car1.png"
+          img1: "../img/car.png",
+          img2: "../img/car1.png"
         },
         {
           name: "用户",
           path: "/user",
-          img1: "http://localhost:8085/img/user.png",
-          img2: "http://localhost:8085/img/user1.png"
+          img1: "../img/user.png",
+          img2: "../img/user1.png"
         }
       ]
     };

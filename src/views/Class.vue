@@ -18,8 +18,8 @@
         </div>
         <div class="content-right">
             <div class="content-info" v-for="(t,index) in box" :key="index">
-                <div><a :name="'m'+index" class="anchor"><img :src="t.img" alt=""></a></div>
-                <p>{{t.title}}</p>
+                <div class="content-anchor"><a :name="'m'+index" class="anchor"><img :src="t.img" alt=""></a></div>
+                <p class="content-title"><span>-- </span> {{t.title}} <span> --</span></p>
                 <div class="content-item">
                     <ul>
                         <li v-for="(item,i) in page" :key="i">
@@ -27,7 +27,7 @@
                                 <div>
                                     <img :src="item.img">
                                 </div>
-                                <p>{{item.subtitle}}</p>
+                                <p class="content-item-subtitle">{{item.subtitle}}</p>
                             </router-link>
                         </li>
                     </ul>
@@ -134,6 +134,9 @@ export default {
     width: 100%;
     padding: 65px 10px 65px 23%;
 }
+.content-right a{
+    font-size: 14px;
+}
 .content-info{
     text-align: center;
     
@@ -144,6 +147,13 @@ export default {
     border-top: 50px solid transparent;
     margin-top: -50px;
 }
+.content-anchor{
+    margin-bottom: 30px;
+}
+.content-title{
+    padding-bottom: 20px;
+    font-size: 18px;
+}
 .content-item ul{
     list-style: none;
     display: flex;
@@ -153,6 +163,9 @@ export default {
 }
 .content-item ul li{
     width: 30%;
+}
+.content-item-subtitle{
+    padding: 10px 0;
 }
 .content-info img{
     width: 100%;

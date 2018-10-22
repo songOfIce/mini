@@ -1,11 +1,12 @@
 <template>
   <div class="home">
+      <div class="test">123</div>
     <header-box/>
     <nav-box/>
     <router-view></router-view>
     <div class="go-top">
         <a href="#">
-            <img src="http://localhost:8085/img/top.png" alt="">
+            <img src="/img/top.png" alt="">
         </a>
     </div>
   </div>
