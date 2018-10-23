@@ -23,7 +23,16 @@ a{
     z-index: 100;
 }
 /* end */
+/* 轮播start */
+.mint-swipe {
+    height: 207px;
+}
 
+.mint-swipe img {
+    width: 100%;
+    height: 100%;
+}
+/* end */
 .test{
     background: red
 }

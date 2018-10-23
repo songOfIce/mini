@@ -1,7 +1,7 @@
 <template>
     <div class="cell">
         <div class="cell-item">
-            <router-link to="" v-if="item.id" v-for="(item,index) in cell" :key="index"><img :src="item.img" alt=""></router-link>
+            <router-link to="" v-if="item.icon" v-for="(item,index) in cell" :key="index"><img :src="item.icon" alt=""></router-link>
         </div>
     </div>
 </template>

@@ -1,7 +1,11 @@
 <template>
     <div class="app-products">
-        <div class="products-item"><img v-if="list[0]" :src="list[0].imgbig" alt=""></div>
-        <Cell :cell="cell" />
+        <mt-swipe :auto="4000">
+            <mt-swipe-item v-for="(item,i) in banner" :key="i" v-if="item.img">
+                <router-link to=""><img v-lazy="item.img" alt=""></router-link>
+            </mt-swipe-item>
+        </mt-swipe>
+        <Cell :cell="banner" />
         <List :imglist="list" />
     </div>
 </template>
@@ -14,16 +18,19 @@ export default {
     data () {
         return {
             list: [],
-            cell: []
+            banner: []
         }
     },
     methods: {
         getData () {
             this.$http.get("http://localhost:8086/home/img/products")
                 .then(res => {
-                    // console.log(res)
-                    this.cell = res.data.cell;
-                    this.list = res.data.imglist;
+                    this.cell = res.data.imglist;
+                })
+            this.$http.get("http://localhost:8086/home/banner?name=products")
+                .then(res => {
+                    this.banner = res.data.banner;
+                    this.list = res.data.list;
                 })
         }
     },

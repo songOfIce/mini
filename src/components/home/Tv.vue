@@ -1,8 +1,12 @@
 <template>
     <div class="home-tv">
-        <div class="tv-item"><img v-if="list[0]" :src="list[0].imgbig" alt=""></div>
-        <Cell :cell="cell" />
-        <List :imglist="list" />
+        <mt-swipe :auto="4000" :show-indicators="false">
+            <mt-swipe-item v-for="(item,i) in banner" :key="i" v-if="item.img">
+                <router-link to=""><img v-lazy="item.img" alt=""></router-link>
+            </mt-swipe-item>
+        </mt-swipe>
+        <Cell :cell="banner" />
+        <List :imglist="list" v-for="item in 5" :key="item" />
     </div>
 </template>
 
@@ -13,17 +17,16 @@ export default {
     name: "Tv",
     data () {
         return {
-            list: [],
-            cell: []
+            banner: [],
+            list: []
         }
     },
     methods: {
         getData () {
-            this.$http.get("http://localhost:8086/home/img/tv")
+            this.$http.get("http://localhost:8086/home/banner?name=tv")
                 .then(res => {
-                    // console.log(res)
-                    this.cell = res.data.cell;
-                    this.list = res.data.imglist;
+                    this.banner = res.data.banner;
+                    this.list = res.data.list;
                 })
         }
     },

@@ -1,6 +1,5 @@
 <template>
   <div class="home">
-      <div class="test">123</div>
     <header-box/>
     <nav-box/>
     <router-view></router-view>

@@ -11,8 +11,8 @@
 export default {
     data(){
         return {
-            list: ["推荐","手机","电视","智能","笔记本","家电","^"],
-            router: ['commend','phone','tv','smart','laptop','products','']
+            list: ["推荐","手机","电视","智能","笔记本","家电"],
+            router: ['commend','phone','tv','smart','laptop','products']
         }
     },
     methods:{
