@@ -1,16 +1,16 @@
 <template>
     <div id="app-header">
         <div class="header-left">
-            <router-link to="/home"><img src="http://localhost:8085/img/logo.png" alt="logo"></router-link>
+            <router-link to="/home"><img src="/img/logo.png" alt="logo"></router-link>
         </div>
         <div class="header-center">
-            <img src="http://localhost:8085/img/search.png" alt="">
+            <img src="/img/search.png" alt="">
             <div class="header-center-box">
                 搜索商品名称
             </div>
         </div>
         <div class="header-right">
-            <img src="http://localhost:8085/img/user.png" alt="">
+            <img src="/img/user.png" alt="">
         </div>
     </div>
 </template>

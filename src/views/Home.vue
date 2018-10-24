@@ -8,12 +8,14 @@
             <img src="/img/top.png" alt="">
         </a>
     </div>
+    <footer-box></footer-box>
   </div>
 </template>
 
 <script>
 import header from '../components/header.vue'
 import nav from '../components/nav.vue'
+import Footer from '../components/footer.vue'
 export default {
     data(){
         return {
@@ -26,7 +28,8 @@ export default {
     },
     components:{
         "header-box":header,
-        "nav-box":nav
+        "nav-box":nav,
+        "footer-box": Footer
     }
 }
 </script>

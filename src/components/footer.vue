@@ -1,5 +1,5 @@
 <template>
-    <div class="app-footer">
+    <div id="footer">
         <div class="app-footer-item" v-for="(item,i) in list" :key="i">
           <router-link :to="item.path">
             <img :src="url==item.path?item.img2:item.img1">
@@ -17,26 +17,26 @@ export default {
         {
           name: "首页",
           path: "/home/commend",
-          img1: "../img/index.png",
-          img2: "../img/index1.png"
+          img1: "/img/index.png",
+          img2: "/img/index1.png"
         },
         {
           name: "分类",
           path: "/class",
-          img1: "../img/class.png",
-          img2: "../img/class1.png"
+          img1: "/img/class.png",
+          img2: "/img/class1.png"
         },
         {
           name: "购物车",
           path: "/car",
-          img1: "../img/car.png",
-          img2: "../img/car1.png"
+          img1: "/img/car.png",
+          img2: "/img/car1.png"
         },
         {
           name: "用户",
           path: "/user",
-          img1: "../img/user.png",
-          img2: "../img/user1.png"
+          img1: "/img/user.png",
+          img2: "/img/user1.png"
         }
       ]
     };
@@ -51,7 +51,7 @@ export default {
 
 <style scoped>
 /* 底部导航 */
-.app-footer {
+#footer {
   display: flex;
   justify-content: space-around;
   position: fixed;
@@ -61,15 +61,17 @@ export default {
   background: #fff;
   padding: 5px;
   z-index: 100;
+  box-shadow: 0 3px 14px 2px rgba(0,0,0,.3);
 }
-.app-footer img {
+#footer img {
   width: 23px;
   height: 23px;
 }
-.app-footer p {
+#footer p {
   margin: 0;
+  font-size: 12px;
 }
-.app-footer-item {
+#footer .app-footer-item {
   text-align: center;
 }
 .active {

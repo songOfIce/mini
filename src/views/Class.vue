@@ -36,11 +36,13 @@
         </div>
         <a name="div" style="padding-bottom:56px"></a>
     </div>
+    <Footer />
   </div>
 </template>
 
 <script>
 import Content from '../components/class/Content.vue'
+import Footer from '../components/footer.vue'
 export default {
     name: "Class",
     data () {
@@ -81,6 +83,9 @@ export default {
                 // a[10].scrollIntoView(false);
             }
         }
+    },
+    components: {
+        Footer
     }
 }
 </script>

@@ -12,7 +12,7 @@
 
 <script>
 import Cell from '../sub/cell.vue'
-import List from '../sub/list.vue'
+import List from '../sub/list.1.vue'
 export default {
     name: "Laptop",
     data () {

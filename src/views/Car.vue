@@ -29,11 +29,13 @@
                 <List :imglist="list" />
             </div>
         </div>
+        <Footer />
     </div>
 </template>
 
 <script>
 import List from '../components/sub/list.vue'
+import Footer from '../components/footer.vue'
 export default {
     name: "Car",
     data () {
@@ -55,7 +57,8 @@ export default {
         window.onscroll = null;
     },
     components: {
-        List
+        List,
+        Footer
     }
 }
 </script>

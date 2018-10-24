@@ -34,16 +34,21 @@
             <div class="user-login-five-item"><span><img class="icon" src="http://localhost:8085/img/home.png" alt="123">小米之家</span><img class="back" src="http://localhost:8085/img/back.png" alt=""></div>
         </div>
         <div class="fenge"></div>
+        <Footer />
     </div>
 </template>
 
 <script>
+import Footer from '../components/footer.vue'
 export default {
     data(){
         return {}
     },
     created() {
         window.onscroll = null;
+    },
+    components: {
+        Footer
     }
 }
 </script>

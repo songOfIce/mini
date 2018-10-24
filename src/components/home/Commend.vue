@@ -21,8 +21,8 @@
         <List :imglist="imgTvList" />
         <h3>明星单品</h3> 
         <List :imglist="imgStarList" /> -->
-        <div>
-            <img src="http://localhost:8085/img/understand.png" alt="">
+        <div class="understand">
+            <img src="/img/understand.png" alt="">
         </div>
         
     </div>
@@ -86,11 +86,8 @@ export default {
 .commend-floor-item{
     height: 50%;
 }
-.understand{
-    padding: 8px;
-    text-align: center;
-    background: #fff;
-    color: #898989;
+.understand img{
+    width: 100%;
 }
 
 </style>

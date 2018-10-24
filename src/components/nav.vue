@@ -43,12 +43,13 @@ export default {
     justify-content: space-around;
     flex-wrap: nowrap;
     overflow-x: hidden;
-    padding: 10px 0;
+    padding: 5px 0;
     margin: 0;
 }
 .nav ul li{
-    font-size: 16px;
+    font-size: 14px;
     padding-bottom: 5px;
+    color: #747474;
 }
 .link{
     color: #747474;
