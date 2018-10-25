@@ -3,7 +3,7 @@ const Mock = require('mockjs');
 Mock.mock('http://localhost:5050/goods/detail', {
     'detail': [{
         'id|+1': 1,
-        'title': '@ctitle(6,8)',
+        'title': '小米8 青春版',
         'subtitle': '潮流镜面渐变色 / 2400万自拍旗舰 / 7.5mm超薄机身 / 6.26"小刘海全面屏 / AI裸妆美颜 / 骁龙660AIE处理器',
         'price|1000-5000': 1000,
         'info': "@ctitle(6,8)",

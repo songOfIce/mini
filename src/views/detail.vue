@@ -9,11 +9,11 @@
         </div>
         <div class="detail-goods">
             <div class="detail-info">
-                <h3 class="detail-title">{{info.title}}</h3>
+                <p class="detail-title">{{info.title}}</h3>
                 <p>
                     <span class="detail-label" v-for="(l,i) in label" :key="i">「{{l.label}}」</span>
                     <span class="detail-subtitle"> {{info.subtitle}} </span></p>
-                <p class="detail-label">¥ {{info.price}}</p>
+                <p class="detail-label detail-price">¥ {{info.price}}</p>
             </div>
             <div class="detail-icon">
                 <div class="icon-item" v-for="(item,i) in 6" :key="i">
@@ -23,9 +23,42 @@
                 </div>
             </div>
             <div>
-                {{info.info}}
+                <div class="serve serve-item">
+                    <div>
+                        <span>已选</span>
+                    </div>
+                    <div>
+                        <span>小米8 青春版 4GB+64GB 深空灰 x 1</span>
+                    </div>
+                </div>
+                <div class="serve serve-item">
+                    <div>
+                        <span>送至</span>
+                    </div>
+                    <div>
+                        <span>北京市 东城区</span>
+                    </div>
+                    <div>
+                        <span> 有现货</span>
+                    </div>
+                </div>
+                <div class="serve">
+                    <div>
+                        <img src="/img/dui.png" alt="">
+                        <span>7天无理由退货</span>
+                    </div>
+                    <div>
+                        <img src="/img/dui.png" alt="">
+                        <span>15天质量问题换货</span>
+                    </div>
+                    <div>
+                        <img src="/img/dui.png" alt="">
+                        <span>365天保修</span>
+                    </div>
+                </div>
             </div>
         </div>
+        <div class="cart">加入购物车</div>
     </div>
 </template>
 
@@ -77,7 +110,7 @@ export default {
     padding: 15px;
 }
 .detail-title{
-    font-size: 16px;
+    font-size: 25px;
     padding-top: 20px;
     padding-left: 20px;
 }
@@ -87,6 +120,10 @@ export default {
 }
 .detail-label{
     color: #f56d03;
+}
+.detail-price{
+    font-size: 25px;
+    padding: 15px 0;
 }
 .detail-icon{
     display: flex;
@@ -101,5 +138,24 @@ export default {
 }
 .icon-font{
     font-size: 12px;
+}
+.serve{
+    display: flex;
+    justify-content: flex-start;
+    font-size: 14px;
+    color: #737373;
+    padding: 10px; 
+    border: 1px solid #ECECEC;
+    border-radius: 8px;
+    margin-bottom: 10px;
+}
+.serve img{
+    width: auto;
+    height: 10px;
+    margin: 0 5px 0 10px;
+    /* vertical-align: middle; */
+}
+.serve-item div span:first-child{
+    margin-right: 20px;    
 }
 </style>
