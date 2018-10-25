@@ -7,20 +7,24 @@
                 </mt-swipe-item>
             </mt-swipe>
         </div>
-        <div class="detail-info">
-            <h3 class="detail-title">{{info.title}}</h3>
-            <p>
-                <span class="detail-label" v-for="(l,i) in label" :key="i">「{{l.label}}」</span>
-                <span> {{info.subtitle}} </span></p>
-            <p class="detail-label">¥ {{info.price}}</p>
-        </div>
-        <div class="detail-icon">
-            <div>
-                <img :src="icon.img" alt="">
+        <div class="detail-goods">
+            <div class="detail-info">
+                <h3 class="detail-title">{{info.title}}</h3>
+                <p>
+                    <span class="detail-label" v-for="(l,i) in label" :key="i">「{{l.label}}」</span>
+                    <span class="detail-subtitle"> {{info.subtitle}} </span></p>
+                <p class="detail-label">¥ {{info.price}}</p>
             </div>
-        </div>
-        <div>
-            {{info.info}}
+            <div class="detail-icon">
+                <div class="icon-item" v-for="(item,i) in 6" :key="i">
+                    <img :src="icon.img" alt="">
+                    <span class="icon-font">超大屏</span>
+                    <span class="icon-font">6.26英寸</span>
+                </div>
+            </div>
+            <div>
+                {{info.info}}
+            </div>
         </div>
     </div>
 </template>
@@ -69,12 +73,33 @@ export default {
     width: auto;
     height: 100%; */
 }
+.detail-goods{
+    padding: 15px;
+}
 .detail-title{
-    font-size: 20px;
+    font-size: 16px;
     padding-top: 20px;
     padding-left: 20px;
 }
+.detail-label,
+.detail-subtitle{
+    font-size: 14px;
+}
 .detail-label{
     color: #f56d03;
+}
+.detail-icon{
+    display: flex;
+    
+}
+.icon-item{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 80px;
+    height: 100px;
+}
+.icon-font{
+    font-size: 12px;
 }
 </style>
