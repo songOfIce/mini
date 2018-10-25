@@ -9,7 +9,7 @@
         </div>
         <div class="detail-goods">
             <div class="detail-info">
-                <p class="detail-title">{{info.title}}</h3>
+                <p class="detail-title">{{info.title}}</p>
                 <p>
                     <span class="detail-label" v-for="(l,i) in label" :key="i">「{{l.label}}」</span>
                     <span class="detail-subtitle"> {{info.subtitle}} </span></p>
