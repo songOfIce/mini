@@ -12,7 +12,7 @@ import Laptop from './components/home/Laptop.vue'
 import Products from './components/home/Products.vue'
 import Smart from './components/home/Smart.vue'
 import Tv from './components/home/Tv.vue'
-
+import Detail from './views/detail.vue'
 Vue.use(Router)
 
 export default new Router({
@@ -21,16 +21,17 @@ export default new Router({
     routes: [
         { path: "*",redirect: "/home"},
         { path: '/home', component: Home,children:[
-            { path: 'commend', component: Commend},
-            { path: 'phone',component: Phone},
-            { path: 'laptop',component: Laptop},
-            { path: 'products',component: Products},
-            { path: 'smart',component: Smart},
-            { path: 'tv',component: Tv}
+            { path: 'commend',meta: {index: 0},  component: Commend},
+            { path: 'phone',meta: {index: 1}, component: Phone},
+            { path: 'tv',meta: {index: 2}, component: Tv},
+            { path: 'smart',meta: {index: 3}, component: Smart},
+            { path: 'laptop',meta: {index: 4}, component: Laptop},
+            { path: 'products',meta: {index: 5}, component: Products},
         ]},
         { path: '/class', component: Class },
         { path: '/car', component: Car},
         { path: '/user', component: User},
+        { path: '/detail', component: Detail}
 
     ]
 })

@@ -1,5 +1,5 @@
 <template>
-    <div class="app-commend">
+    <div class="app-commend" >
         <!-- 组件轮播 -->
         <mt-swipe :auto="4000" class="mint">
             <mt-swipe-item v-for="(item,i) in banner" :key="i" v-if="item.img">
@@ -34,31 +34,35 @@ export default {
   name: "Commend",
   data() {
     return {
-        display: null,
-        banner: [],
-        list: [],
-        // imglist: [],
-        // imgTvList: [],
-        // imgStarList: []
+      display: null,
+      banner: [],
+      list: []
+      // imglist: [],
+      // imgTvList: [],
+      // imgStarList: []
     };
   },
   methods: {
     getData() {
-      this.$http.get("http://localhost:8086/home/banner?name=commend").then(data => {
-        this.banner = data.data.banner;
-        this.list = data.data.list;
-      });
+      this.$http
+        .get("http://localhost:8086/home/banner?name=commend")
+        .then(data => {
+          this.banner = data.data.banner;
+          this.list = data.data.list;
+        });
     }
   },
   created() {
     this.getData();
-    window.onscroll = function () {
-        var t = document.documentElement.scrollTop;
-        var top = document.querySelector(".go-top");
-        if (t > 1200) {
-            top.style.display = "block"
-        }else{ top.style.display = "none"}
-    }
+    window.onscroll = function() {
+      var t = document.documentElement.scrollTop;
+      var top = document.querySelector(".go-top");
+      if (t > 1200) {
+        top.style.display = "block";
+      } else {
+        top.style.display = "none";
+      }
+    };
   },
   components: {
     Cell,
@@ -71,7 +75,6 @@ export default {
 .mint > div:last-child {
   display: none;
 }
-
 /* 各推荐的楼层 */
 .commend-floor {
   display: flex;
@@ -83,13 +86,12 @@ export default {
   width: 49.5%;
   height: 100%;
 }
-.commend-floor-item{
-    height: 50%;
+.commend-floor-item {
+  height: 50%;
 }
-.understand img{
-    width: 100%;
+.understand img {
+  width: 100%;
 }
-
 </style>
 
 

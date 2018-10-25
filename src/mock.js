@@ -1,5 +1,27 @@
 //模拟数据 充当接口
 const Mock = require('mockjs');
+Mock.mock('http://localhost:5050/goods/detail', {
+    'detail': [{
+        'id|+1': 1,
+        'title': '@ctitle(6,8)',
+        'subtitle': '潮流镜面渐变色 / 2400万自拍旗舰 / 7.5mm超薄机身 / 6.26"小刘海全面屏 / AI裸妆美颜 / 骁龙660AIE处理器',
+        'price|1000-5000': 1000,
+        'info': "@ctitle(6,8)",
+        'choose': '@ctitle(10)',
+        'serveimg': "@image('34x34',@color)"
+    }],
+    'img|3': [{
+        'img': "@image('1080x1188',@color)",
+    }],
+    'label|3': [{
+        'label': '@ctitle(6,8)',
+    }],
+    'icon': [{
+        'img': "@image('48x48',@color)",
+        'icontitle': '@ctitle(2,4)',
+        'icondetail': '@ctitle(6,8)',
+    }]
+})
 Mock.mock('/home/banner',{
     'banner|3': [{
         'img_url': "@image('720x360',@color)"

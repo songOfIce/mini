@@ -43,7 +43,11 @@ export default {
   },
   computed: {
       url(){
-        return  this.$route.path
+            if(this.$route.path.indexOf("home") !=-1){
+                return "/home/commend"
+            }else{
+                return  this.$route.path
+            }
       }
   }
 };
@@ -57,11 +61,12 @@ export default {
   position: fixed;
   left: 0;
   bottom: 0;
-  width: 100%;
+  right: 0;
   background: #fff;
   padding: 5px;
-  z-index: 100;
+  z-index: 9999;
   box-shadow: 0 3px 14px 2px rgba(0,0,0,.3);
+  transition: all .2s ease;
 }
 #footer img {
   width: 23px;
@@ -74,7 +79,7 @@ export default {
 #footer .app-footer-item {
   text-align: center;
 }
-.active {
-  color: #f56d02;
+.active{
+    color: #f56d03;
 }
 </style>

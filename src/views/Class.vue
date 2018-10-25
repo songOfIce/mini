@@ -2,10 +2,10 @@
   <div class="fenlei">
     <mt-header title="分类">
         <router-link to="/" slot="left">
-            <img src="http://localhost:8085/img/back.png">
+            <img src="/img/back.png">
         </router-link>
         <mt-button slot="right">
-            <img src="http://localhost:8085/img/search.png">
+            <img src="/img/search.png">
         </mt-button>
     </mt-header>
     <div class="content">
@@ -102,8 +102,14 @@ export default {
     background: #fff;
 }
 
-.mintui{
-    font-size: 30px !important;
+.mint-header{
+    font-size: 16px;
+    height: 45px;
+}
+.mint-header img{
+    width: 28px;
+    height: 28px;
+
 }
 .sidebar{
     position: fixed;
@@ -129,7 +135,7 @@ export default {
 .sidebar ul li{
     padding: 20px 0;
     text-align: center;
-    font-size: 16px;
+    font-size: 14px;
 }
 .sidebar ul li a{
     color: #3C3C3C;
@@ -140,7 +146,7 @@ export default {
     padding: 65px 10px 65px 23%;
 }
 .content-right a{
-    font-size: 14px;
+    font-size: 12px;
 }
 .content-info{
     text-align: center;

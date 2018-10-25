@@ -1,4 +1,5 @@
 import Vue from 'vue'
+import vuex from 'vuex'
 import App from './App.vue'
 import router from './router'
 import store from './store'
@@ -22,7 +23,7 @@ import $ from 'jquery'
 Vue.prototype.$ = $
 // import VueResource from 'vue-resource';
 // Vue.use(VueResource);
-
+Vue.use(vuex);
 // 挂载MintUI
 // Vue.component(Swipe.name, Swipe);
 // Vue.component(SwipeItem.name, SwipeItem);
