@@ -32,7 +32,7 @@ export default {
   },
   methods: {
     getData() {
-      this.$http.get("http://localhost:8086/home/banner?name=phone").then(res => {
+      this.$http.get("http://localhost:5050/home/banner?name=phone").then(res => {
         this.banner = res.data.banner;
         this.list = res.data.list;
         // this.imglist1 = res.data.imglist.slice(0,6);

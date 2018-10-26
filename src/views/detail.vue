@@ -42,7 +42,7 @@
                         <span> 有现货</span>
                     </div>
                 </div>
-                <div class="serve">
+                <div class="serve serve-promise">
                     <div>
                         <img src="/img/dui.png" alt="">
                         <span>7天无理由退货</span>
@@ -157,5 +157,8 @@ export default {
 }
 .serve-item div span:first-child{
     margin-right: 20px;    
+}
+.serve-promise{
+    font-size: 12px;
 }
 </style>
