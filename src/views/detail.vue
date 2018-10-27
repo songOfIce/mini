@@ -101,11 +101,6 @@ export default {
     width: auto;
     height: 100%;
 }
-.detail-img img{
-    /* display: block;
-    width: auto;
-    height: 100%; */
-}
 .detail-goods{
     padding: 15px;
 }

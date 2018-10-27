@@ -45,10 +45,10 @@ export default {
     },
     methods: {
         getData() {
-            this.$http.get("http://localhost:8080/home/commend")
+            this.$http.get("http://localhost:5050/home/banner?name=commend")
                 .then(res =>{
-                    // console.log(res)
-                    this.list = res.data.imglist;
+                    console.log(res)
+                    this.list = res.data.list;
                 })
         }
     },

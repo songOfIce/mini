@@ -22,10 +22,10 @@
                 <p class="content-title"><span>-- </span> {{t.title}} <span> --</span></p>
                 <div class="content-item">
                     <ul>
-                        <li v-for="(item,i) in page" :key="i">
+                        <li v-for="(item,i) in page" :key="i" v-if="item.name==t.title">
                             <router-link to="javascript:;">
                                 <div>
-                                    <img :src="item.img">
+                                    <img :src="item.img" :data-pid="item.pid">
                                 </div>
                                 <p class="content-item-subtitle">{{item.subtitle}}</p>
                             </router-link>
@@ -47,18 +47,13 @@ export default {
     name: "Class",
     data () {
         return {
-            side: ["新品","手机","电视","电脑","家电","路由","出行","穿戴","智能","电源","健康","灯具","儿童","插线板","音频","箱包","生活","配件","家装","礼品","服务","米粉卡","零售店"], 
+            side: ["手机","电视","电脑","家电","路由","出行","穿戴","智能","电源","健康","灯具","儿童","插线板","音频","箱包","生活","配件","家装","礼品","服务","米粉卡","零售店"], 
             box: [],
             page: []
         }
     },
     methods: {
         getData() {
-            this.$http.get("http://localhost:8086/class")
-                .then(res => {
-                    // console.log(res)
-                    // this.box = res.data.content;
-                })
             this.$http.get("http://localhost:5050/fenlei")
                 .then(res =>{
                     console.log(res)
