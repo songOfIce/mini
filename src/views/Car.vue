@@ -29,6 +29,7 @@
                 <List :imglist="list" />
             </div>
         </div>
+        <goTop />
         <Footer />
     </div>
 </template>
@@ -36,6 +37,7 @@
 <script>
 import List from '../components/sub/list.vue'
 import Footer from '../components/footer.vue'
+import goTop from '../components/sub/goTop.vue'
 export default {
     name: "Car",
     data () {
@@ -58,7 +60,8 @@ export default {
     },
     components: {
         List,
-        Footer
+        Footer,
+        goTop
     }
 }
 </script>

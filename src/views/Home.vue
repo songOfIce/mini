@@ -6,11 +6,7 @@
     <transition :name="transitionName">
         <router-view></router-view>
     </transition>
-    <div class="go-top">
-        <a href="#">
-            <img src="/img/top.png" alt="">
-        </a>
-    </div>
+    <goTop />
   </div>
 </template>
 
@@ -18,6 +14,7 @@
 import header from '../components/header.vue'
 import nav from '../components/nav.vue'
 import Footer from '../components/footer.vue'
+import goTop from '../components/sub/goTop.vue'
 export default {
     data(){
         return {
@@ -25,12 +22,24 @@ export default {
         }
     },
     created () {
-        this.$router.push('/home/commend');
+        // this.$router.push('/home/commend');
+        window.onscroll = function() {
+            var t = document.documentElement.scrollTop;
+            var top = document.querySelector(".go-top");
+            if (t > 1200) {
+                top.style.display = "block";
+                // this.$store.commit("setShow");
+            } else {
+                top.style.display = "none";
+                // this.$store.commit("setShow");
+            }
+        };
     },
     components:{
         "header-box":header,
         "nav-box":nav,
-        "footer-box": Footer
+        "footer-box": Footer,
+        goTop
     },
     watch: {
         $route(to, from){
@@ -55,19 +64,7 @@ export default {
         overflow-x: auto;
         min-height: 675px;
     }
-    /* 回顶部 start */
-    .go-top {
-        position: fixed;
-        bottom: 100px;
-        right: 10px;
-        display: none;
-    }
-
-    .go-top img {
-        width: 40px;
-        height: 40px;
-        opacity: .9;
-    }
+    
     
     /* end */
     /* 路由切换动画 */

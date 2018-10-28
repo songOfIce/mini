@@ -150,12 +150,12 @@ INSERT INTO home_list VALUES(NULL,406,'laptop','http://localhost:5050/img/list/l
 
 INSERT INTO home_list VALUES(NULL,1,'commend','http://localhost:5050/img/list/commend/1.jpg','小米8 青春版','潮流镜面渐变色，自拍旗舰','1399','');
 INSERT INTO home_list VALUES(NULL,2,'commend','http://localhost:5050/img/list/commend/2.jpg','小米8 屏幕指纹版','压感屏幕指纹，潮流外观','3199','');
-INSERT INTO home_list VALUES(NULL,111,'commend','http://localhost:5050/img/list/commend/3.jpg','红米6A','好用好看不贵','569','');
-INSERT INTO home_list VALUES(NULL,112,'commend','http://localhost:5050/img/list/commend/4.jpg','小米6X','轻薄美观的拍照手机','1199','');
-INSERT INTO home_list VALUES(NULL,113,'commend','http://localhost:5050/img/list/commend/5.jpg','小米8 SE','三星 AMOLED 全面屏 小屏旗舰','1649','');
+INSERT INTO home_list VALUES(NULL,112,'commend','http://localhost:5050/img/list/commend/3.jpg','红米6A','好用好看不贵','569','');
+INSERT INTO home_list VALUES(NULL,113,'commend','http://localhost:5050/img/list/commend/4.jpg','小米6X','轻薄美观的拍照手机','1199','');
+INSERT INTO home_list VALUES(NULL,114,'commend','http://localhost:5050/img/list/commend/5.jpg','小米8 SE','三星 AMOLED 全面屏 小屏旗舰','1649','');
 INSERT INTO home_list VALUES(NULL,114,'commend','http://localhost:5050/img/list/commend/6.jpg','小米平板4','追剧神器 / 支持AI人脸识别','1099','');
-INSERT INTO home_list VALUES(NULL,115,'commend','http://localhost:5050/img/list/commend/7.jpg','小米MIX 2S','陶瓷机身 手机中的艺术品','2899','');
-INSERT INTO home_list VALUES(NULL,116,'commend','http://localhost:5050/img/list/commend/8.jpg','黑鲨游戏手机 液冷更快','液冷散热，独立图像处理芯片','2899s','');
+INSERT INTO home_list VALUES(NULL,115,'commend','http://localhost:5050/img/list/commend/8.jpg','小米MIX 2S','陶瓷机身 手机中的艺术品','2899','');
+INSERT INTO home_list VALUES(NULL,116,'commend','http://localhost:5050/img/list/commend/7.jpg','黑鲨游戏手机 液冷更快','液冷散热，独立图像处理芯片','2899s','');
 INSERT INTO home_list VALUES(NULL,301,'commend','http://localhost:5050/img/list/commend/9.jpg','小米电视4A 32英寸','64位处理器，高清智能电视','899','999');
 INSERT INTO home_list VALUES(NULL,302,'commend','http://localhost:5050/img/list/commend/10.jpg','43"电视4A 青春版','全高清屏，人工智能语音','1499','1699');
 INSERT INTO home_list VALUES(NULL,303,'commend','http://localhost:5050/img/list/commend/11.jpg','小米电视4C 50英寸','钢琴烤漆，4K HDR','1999','2199');

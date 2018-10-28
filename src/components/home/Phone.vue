@@ -35,10 +35,6 @@ export default {
       this.$http.get("http://localhost:5050/home/banner?name=phone").then(res => {
         this.banner = res.data.banner;
         this.list = res.data.list;
-        // this.imglist1 = res.data.imglist.slice(0,6);
-        // this.imglist2 = res.data.imglist.slice(6,12);
-        // this.imglist3 = res.data.imglist.slice(12,16);
-        // this.imglist4 = res.data.imglist.slice(16,18);
       });
     }
   },

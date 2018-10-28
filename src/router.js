@@ -19,19 +19,19 @@ export default new Router({
     mode: 'history',
     base: process.env.BASE_URL,
     routes: [
-        { path: "*",redirect: "/home"},
-        { path: '/home', component: Home,children:[
-            { path: 'commend',meta: {index: 0},  component: Commend},
-            { path: 'phone',meta: {index: 1}, component: Phone},
-            { path: 'tv',meta: {index: 2}, component: Tv},
-            { path: 'smart',meta: {index: 3}, component: Smart},
-            { path: 'laptop',meta: {index: 4}, component: Laptop},
-            { path: 'products',meta: {index: 5}, component: Products},
+        { path: "*",redirect: "/home/commend"},
+        { path: '/home/commend', component: Home,children:[
+            { path: '/home/commend',meta: {index: 0},  component: Commend},
+            { path: '/home/phone',meta: {index: 1}, component: Phone},
+            { path: '/home/tv',meta: {index: 2}, component: Tv},
+            { path: '/home/smart',meta: {index: 3}, component: Smart},
+            { path: '/home/laptop',meta: {index: 4}, component: Laptop},
+            { path: '/home/products',meta: {index: 5}, component: Products},
         ]},
         { path: '/class', component: Class },
         { path: '/car', component: Car},
         { path: '/user', component: User},
-        { path: '/detail', component: Detail}
+        { path: '/detail/:pid', component: Detail}
 
     ]
 })

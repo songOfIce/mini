@@ -23,10 +23,6 @@ export default {
     },
     methods: {
         getData () {
-            this.$http.get("http://localhost:5050/home/img/smart")
-                .then(res => {
-                    this.cell = res.data.imglist;
-                })
             this.$http.get("http://localhost:5050/home/banner?name=smart")
                 .then(res =>{
                     this.banner = res.data.banner;

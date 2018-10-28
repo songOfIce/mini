@@ -23,7 +23,7 @@
                 <div class="content-item">
                     <ul>
                         <li v-for="(item,i) in page" :key="i" v-if="item.name==t.title">
-                            <router-link to="javascript:;">
+                            <router-link :to="'/detail/'+item.pid">
                                 <div>
                                     <img :src="item.img" :data-pid="item.pid">
                                 </div>
@@ -36,6 +36,7 @@
         </div>
         <a name="div" style="padding-bottom:56px"></a>
     </div>
+    <goTop />
     <Footer />
   </div>
 </template>
@@ -43,6 +44,7 @@
 <script>
 import Content from '../components/class/Content.vue'
 import Footer from '../components/footer.vue'
+import goTop from '../components/sub/goTop.vue'
 export default {
     name: "Class",
     data () {
@@ -85,7 +87,8 @@ export default {
         }
     },
     components: {
-        Footer
+        Footer,
+        goTop
     }
 }
 </script>

@@ -23,8 +23,7 @@
         <List :imglist="imgStarList" /> -->
         <div class="understand">
             <img src="/img/understand.png" alt="">
-        </div>
-        
+        </div>   
     </div>
 </template>
 <script>
@@ -54,15 +53,7 @@ export default {
   },
   created() {
     this.getData();
-    window.onscroll = function() {
-      var t = document.documentElement.scrollTop;
-      var top = document.querySelector(".go-top");
-      if (t > 1200) {
-        top.style.display = "block";
-      } else {
-        top.style.display = "none";
-      }
-    };
+    
   },
   components: {
     Cell,

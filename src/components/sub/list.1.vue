@@ -2,7 +2,7 @@
     <div class="app-list">
         <div class="list">
             <div class="list-item" v-for="(item,i) in imglist" :key="i">
-              <router-link to="#">
+              <router-link :to="'/detail/'+item.pid">
                 <img :src="item.img" :data-pid="item.pid">
                 <div class="list-item-link">
                     <h5 class="list-title">{{item.title}}</h5>
