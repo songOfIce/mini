@@ -13,6 +13,8 @@ import Products from './components/home/Products.vue'
 import Smart from './components/home/Smart.vue'
 import Tv from './components/home/Tv.vue'
 import Detail from './views/detail.vue'
+import Register from './views/register'
+import Login from './views/login'
 Vue.use(Router)
 
 export default new Router({
@@ -31,7 +33,8 @@ export default new Router({
         { path: '/class', component: Class },
         { path: '/car', component: Car},
         { path: '/user', component: User},
-        { path: '/detail/:pid', component: Detail}
-
+        { path: '/detail/:pid', component: Detail},
+        { path: '/register', component: Register},
+        { path: '/login', component: Login}
     ]
 })

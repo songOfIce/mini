@@ -74,11 +74,15 @@
             </div>
             <div class="cart-add" @click="add()">加入购物车</div>
         </div>
+        <div class="goback" @click="goback()">
+            <img src="/img/goback.png" alt="">
+        </div>
     </div>
 </template>
 
 <script>
 import goTop from '../components/sub/goTop.vue'
+import { Toast } from 'mint-ui';
 export default {
     name: "Detail",
     data() {
@@ -98,8 +102,11 @@ export default {
                     this.icon = res.data.icon;
                 })
         },
+        goback() {
+            history.go(-1);
+        },
         add() {
-            
+            Toast("添加成功")
         }
     },
     created() {
@@ -144,7 +151,7 @@ export default {
 }
 .detail-icon{
     position: relative;
-    height: 100px;
+    height: 80px;
     margin: 0 -15px;
     padding: 0;
     overflow-x: auto;
@@ -154,14 +161,18 @@ export default {
     left: 0;
     display: flex;
     flex-wrap: nowrap;
-    height: 100px;
+    height: 80px;
 }
 .icon-item{
     display: flex;
     flex-direction: column;
     align-items: center;
     width: 80px;
-    height: 100px;
+    height: 80px;
+}
+.icon-item img{
+    width: auto;
+    height: 1.5rem;
 }
 .icon-font{
     font-size: 12px;
@@ -223,5 +234,11 @@ export default {
     background: #FF6700;
     color: white;
     border-radius: 20px;
+}
+/* 后退 */
+.goback{
+    position: absolute;
+    top: 1rem;
+    left: 1rem;
 }
 </style>
