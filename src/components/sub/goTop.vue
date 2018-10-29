@@ -1,5 +1,5 @@
 <template>
-    <div class="go-top">
+    <div class="go-top" v-if="$store.getters.getShow">
         <a href="#">
             <img src="/img/top.png" alt="">
         </a>
@@ -18,7 +18,6 @@ export default {
         position: fixed;
         bottom: 100px;
         right: 10px;
-        display: none;
     }
 
     .go-top img {

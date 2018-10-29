@@ -21,19 +21,23 @@ export default {
             transitionName: ""
         }
     },
-    created () {
-        // this.$router.push('/home/commend');
-        window.onscroll = function() {
-            var t = document.documentElement.scrollTop;
-            var top = document.querySelector(".go-top");
-            if (t > 1200) {
-                top.style.display = "block";
-                // this.$store.commit("setShow");
-            } else {
-                top.style.display = "none";
-                // this.$store.commit("setShow");
+    methods: {
+        handleScroll() {
+            if(window.scrollY > 1000){
+                if(!this.$store.getters.getShow)
+                this.$store.commit("setShow")
             }
-        };
+            else{
+                if(this.$store.getters.getShow)
+                this.$store.commit("setShow")
+
+            }
+        }
+    },
+    mounted() {
+        window.addEventListener("scroll",this.handleScroll)
+    },
+    created () {
     },
     components:{
         "header-box":header,
