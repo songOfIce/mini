@@ -2,6 +2,17 @@ SET NAMES UTF8;
 DROP DATABASE IF EXISTS xm;
 CREATE DATABASE xm CHARSET=utf8;
 USE xm;
+#用户
+drop TABLE IF EXISTS users; 
+CREATE TABLE users(
+    id INT PRIMARY KEY AUTO_INCREMENT,
+    uid CHAR(11) not null,
+    uname VARCHAR(16),
+    upwd VARCHAR(24),
+    phone CHAR(11) not null,
+    img VARCHAR(255)
+);
+INSERT INTO users VALUES(null,15962677205,'夜色不再','123456',15962677205,'//s1.mi-img.com/mfsv2/download/fdsc3/p0160alHO1RK/XmH4xhtJEERVC6.jpg');
 
 CREATE TABLE banner(
     bid INT PRIMARY KEY AUTO_INCREMENT,

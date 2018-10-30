@@ -68,13 +68,8 @@ export default {
         overflow-x: auto;
         min-height: 675px;
     }
-    
-    
     /* end */
     /* 路由切换动画 */
-    /* .main{
-        position: relative;
-    } */
     .slid-left-enter-active,
     .slid-left-leave-active,
     .slid-right-enter-active,

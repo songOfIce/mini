@@ -18,15 +18,16 @@ app.listen(5050,()=>{console.log("success: "+ port)});
 // 引入路由
 const home = require("./routes/home.js");
 const fenlei = require('./routes/fenlei.js');
-const detail = require('./routes/detail');
-
+const detail = require('./routes/detail.js');
+const user = require('./routes/user.ts');
 app.use(express.static(__dirname+"/public"));
 app.use(bodyParser.urlencoded({extended: false}));
 
 // 挂载路由
 app.use("/home",home);
 app.use("/fenlei", fenlei);
-app.use('/detail',detail)
+app.use('/detail',detail);
+app.use('/user',user);
 // 处理上传文件
 // 单个上传
 app.post('/upload',upload.single('mypic'),(req,res)=>{

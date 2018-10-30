@@ -4,7 +4,7 @@
         <div style="font-size: 1.3rem;">小米账号登录</div>
         <div>
             <div class="register-phone">
-                <input class="input" type="text" placeholder="账号" v-model="uname">
+                <input class="input" type="text" placeholder="手机号码/小米ID" v-model="uid">
             </div>
             <div class="register-phone">
                 <input class="input" :type="type.t" placeholder="密码" v-model="upwd">
@@ -17,8 +17,8 @@
             </div>
             <div class="register-code">
                 <input class="input code-input" type="text" placeholder="验证码" v-model="verification">
-                <canvas class="can" v-if="getcode.show" width="100" height="30"></canvas>
-                <span class="getcode" v-else>获取验证码</span>
+                <canvas @click="change()" class="can" v-show="getcode.show" width="100" height="30"></canvas>
+                <span class="getcode" v-show="!getcode.show" @click="show2()">获取验证码</span>
             </div>
         </div>
         <!-- 提示区域 start -->
@@ -29,32 +29,57 @@
         <!-- end -->
         <div class="register-login" @click="login()">立即登录</div>
         <div class="register-login user-login"><router-link to="/register">没账号去注册</router-link></div>
-        <div><img src="/img/login.png" alt=""></div>
+        <div @click="info()"><img src="/img/login.png" alt=""></div>
         
     </div>
 </template>
 
 <script>
+import { Toast } from 'mint-ui';
 export default {
   name: "Login",
   data() {
     return {
-      getcode: { show: true, content: "" },
+      getcode: { show: false, content: "" },
       type: {t: "password",isShow: false},
-      uname: "",
+      uid: "",
       upwd: "",
       verification: "",
       msg: ""
     };
   },
   methods: {
-      test(value){
-          if(!value) this.msg = "";
+      info() {
+          Toast({
+            message: '暂不支持',
+            position: 'bottom',
+            duration: 2000
+            });
       },
+      change() {
+          this.ctx1();
+      },
+    //   获取验证码
+    show2(){
+        this.getcode.show = true;
+        this.ctx1();
+        console.log(this.getcode)
+    },
     //   登录
     login() {
-        console.log(this.uname,this.upwd,this.verification)
-        if(this.verification != this.getcode.content) return this.msg = "验证码不正确";
+        var reg = /^1[34578]\d{9}$/;
+        if(!this.uid) return this.msg = "请输入账号";
+        if(!reg.test(this.uid)) return this.msg = "用户名不正确";
+        if(!this.upwd) return this.msg = "请输入密码";
+        if(this.verification.toLocaleLowerCase() != this.getcode.content) return this.msg = "验证码不正确";
+        console.log(this.uid,this.upwd)
+        this.$http.post("http://localhost:5050/user/login",`uid=${this.uid}&upwd=${this.upwd}`).then(res =>{
+                if(res.data.code == -1) this.msg = res.data.msg
+                else {
+                    sessionStorage["uid"] = res.data.msg[0].uid;
+                    sessionStorage['uname'] = res.data.msg[0].uname;
+                }
+            });
     },
     //   切换密码模式
         show(e) {
@@ -70,69 +95,71 @@ export default {
     //   验证
         //1.新建一个函数产生随机数
         rn(min, max) {
-        return parseInt(Math.random() * (max - min) + min);
-        },
-        //2.新建一个函数产生随机颜色
-        rc(min, max) {
-        var r = this.rn(min, max);
-        var g = this.rn(min, max);
-        var b = this.rn(min, max);
-        return `rgb(${r},${g},${b})`;
-        },
-        ctx1() {
-        // 填充背景颜色，背景颜色要浅一点
-        var c1 = document.querySelector(".can");
-        var w = 100;
-        var h = 30;
-        var ctx = c1.getContext("2d");
-        ctx.fillStyle = this.rc(180, 230);
-        ctx.fillRect(0, 0, w, h);
-        //4.随机产生字符串
-        var pool = "ABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890";
-        for (var i = 0; i < 4; i++) {
-            var c = pool[this.rn(0, pool.length)]; //随机的字
-            this.getcode.content += c;
-            var fs = this.rn(25, 35); //字体的大小
-            var deg = this.rn(-30, 30); //字体的旋转角度
-            ctx.font = fs + "px Simhei";
-            ctx.textBaseline = "top";
-            ctx.fillStyle = this.rc(80, 150);
-            ctx.save();
-            ctx.translate(25 * i + 15, 15);
-            ctx.rotate((deg * Math.PI) / 180);
-            ctx.fillText(c, -15+5, -15);
-            ctx.restore();
-        }
-        //5.随机产生5条干扰线,干扰线的颜色要浅一点
-        for (var i = 0; i < 5; i++) {
-            ctx.beginPath();
-            ctx.moveTo(this.rn(0, w), this.rn(0, h));
-            ctx.lineTo(this.rn(0, w), this.rn(0, h));
-            ctx.strokeStyle = this.rc(180, 230);
-            ctx.closePath();
-            ctx.stroke();
-        }
-        //6.随机产生40个干扰的小点
-        for (var i = 0; i < 40; i++) {
-            ctx.beginPath();
-            ctx.arc(this.rn(0, w), this.rn(0, h), 1, 0, 2 * Math.PI);
-            ctx.closePath();
-            ctx.fillStyle = this.rc(150, 200);
-            ctx.fill();
-        }
-        // console.log(this.getcode.content.toLocaleLowerCase())
-        }
+                return parseInt(Math.random() * (max - min) + min);
+            },
+            //2.新建一个函数产生随机颜色
+            rc(min, max) {
+            var r = this.rn(min, max);
+            var g = this.rn(min, max);
+            var b = this.rn(min, max);
+            return `rgb(${r},${g},${b})`;
+            },
+            ctx1() {
+            // 填充背景颜色，背景颜色要浅一点
+            var c1 = document.querySelector(".can");
+            var w = 100;
+            var h = 30;
+            var ctx = c1.getContext("2d");
+            ctx.fillStyle = this.rc(180, 230);
+            ctx.fillRect(0, 0, w, h);
+            //4.随机产生字符串
+            var pool = "ABCDEFGHIJKLMNOPQRSTUVWXYZ123456789";
+            this.getcode.content = "";
+            for (var i = 0; i < 4; i++) {
+                var c = pool[this.rn(0, pool.length)]; //随机的字
+                this.getcode.content += c;
+                var fs = this.rn(25, 35); //字体的大小
+                var deg = this.rn(-30, 30); //字体的旋转角度
+                ctx.font = fs + "px Simhei";
+                ctx.textBaseline = "top";
+                ctx.fillStyle = this.rc(80, 150);
+                ctx.save();
+                ctx.translate(25 * i + 15, 15);
+                ctx.rotate((deg * Math.PI) / 180);
+                ctx.fillText(c, -15+5, -15);
+                ctx.restore();
+            }
+            //5.随机产生5条干扰线,干扰线的颜色要浅一点
+            for (var i = 0; i < 5; i++) {
+                ctx.beginPath();
+                ctx.moveTo(this.rn(0, w), this.rn(0, h));
+                ctx.lineTo(this.rn(0, w), this.rn(0, h));
+                ctx.strokeStyle = this.rc(180, 230);
+                ctx.closePath();
+                ctx.stroke();
+            }
+            //6.随机产生40个干扰的小点
+            for (var i = 0; i < 40; i++) {
+                ctx.beginPath();
+                ctx.arc(this.rn(0, w), this.rn(0, h), 1, 0, 2 * Math.PI);
+                ctx.closePath();
+                ctx.fillStyle = this.rc(150, 200);
+                ctx.fill();
+            }
+            this.getcode.content = this.getcode.content.toLocaleLowerCase()
+            }
     },
   created() {},
-  mounted() {
-    this.ctx1();
-  },
   watch: {
-      uname(){
-        this.test(this.uname);
+      uid(){
+        this.msg = "";
+      },
+      upwd() {
+        this.msg = "";
       },
       verification(){
-        this.test(this.verification)
+        this.msg = "";
+        if(this.verification == "") this.ctx1();
       }
   }
 };

@@ -1,10 +1,13 @@
 <template>
     <div class="user">
         <div class="user-login">
-            <router-link to="/user/login">
+            <router-link to="/login">
                 <div class="user-login-head">
-                    <div><img src="http://localhost:8085/img/users.png" alt=""></div>
-                    <div>登录/注册</div>
+                    <div><img :src="show?'//s1.mi-img.com/mfsv2/download/fdsc3/p0160alHO1RK/XmH4xhtJEERVC6.jpg':'/img/users.png'" alt=""></div>
+                    <div class="user-success">
+                        <span class="user-name">{{show?uname:"登录/注册"}}</span>
+                        <span class="user-uid">{{show?show:""}}</span>
+                    </div>
                 </div>
             </router-link>
             <div class="user-login-two">
@@ -33,7 +36,9 @@
             <div class="user-login-five-item"><span><img class="icon" src="http://localhost:8085/img/serve.png" alt="123">服务中心</span><img class="back" src="http://localhost:8085/img/back.png" alt=""></div>
             <div class="user-login-five-item"><span><img class="icon" src="http://localhost:8085/img/home.png" alt="123">小米之家</span><img class="back" src="http://localhost:8085/img/back.png" alt=""></div>
         </div>
-        <div class="fenge"></div>
+        <div class="fenge" style="height: 100px"></div>
+        <!-- 登录之后的 退出登录 -->
+        <div class="logout" v-if="show" @click="logout()">退出登录</div>
         <Footer />
     </div>
 </template>
@@ -42,10 +47,19 @@
 import Footer from '../components/footer.vue'
 export default {
     data(){
-        return {}
+        return {
+            show: sessionStorage['uid'],
+            uname: sessionStorage['uname']
+        }
+    },
+    methods: {
+        logout() {
+            // sessionStorage.clear();
+             sessionStorage.removeItem('uid')
+            history.go(0);
+        }
     },
     created() {
-        window.onscroll = null;
     },
     components: {
         Footer
@@ -54,7 +68,35 @@ export default {
 </script>
 
 <style scoped>
-
+/* 用户登录显示 start*/
+.user-success{
+    display: flex;
+    flex-direction: column;
+    padding-left: 10px;
+    padding-top: 10px;
+    color: #fff;
+    font-size: 14px;
+}
+.user{
+    font-size: .8rem;
+}
+.user-uid{
+    color: #FACB9F;
+}
+.logout{
+    position: absolute;
+    bottom: 50px;
+    text-align: center;
+    width: 100%;
+    height: 50px;
+    line-height: 50px;
+    background: #f37d0f;
+    color: #fff;
+}
+.logout:active{
+    opacity: .8;
+}
+/* end */
 .user-login .user-login-head{
     display: flex;
     background: #f37d0f url("http://localhost:8085/img/bg.png") center 0;
@@ -67,16 +109,11 @@ export default {
     border-radius: 50%;
     border: 3px solid hsla(0,0%,100%,.4);
     text-align: center;
+    overflow: hidden;
 }
 .user-login .user-login-head>div:first-child img{
     width: auto;
     height: 100%;
-}
-.user-login-head>div:last-child{
-    line-height: 55px;
-    padding-left: 20px;
-    color: #fff;
-    font-size: 14px;
 }
 .user-login-two, .user-login-three{
     display: flex;
@@ -86,6 +123,9 @@ export default {
 }
 .user-login-three{
     justify-content: space-around;
+}
+.user-login-three p {
+    font-size: .8rem;
 }
 .user-login-three div{
     text-align: center;
