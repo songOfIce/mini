@@ -4,7 +4,8 @@ Vue.use(Vuex)
 
 export default new Vuex.Store({
     state: {
-        isDisplay: false
+        isDisplay: false,
+        products: []
     },
     mutations: {
         setShow(state) {
@@ -13,11 +14,18 @@ export default new Vuex.Store({
             } else {
                 state.isDisplay = true;
             }
+        },
+        addProduct(state,pid) {
+            state.products.push(pid);
+            console.log(state.products)
         }
     },
     getters: {
         getShow: function (state) {
             return state.isDisplay;
+        },
+        getProducts: function(state){
+            return state.products
         }
     }
 })

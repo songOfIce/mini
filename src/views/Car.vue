@@ -9,8 +9,8 @@
             </mt-button>
         </mt-header>
         <div class="login">
-            <product-list />
-            <router-link to="javascript:;">
+            <product-list  v-if="show" />
+            <router-link to="javascript:;" v-else>
                 <span>登录后享受更多优惠</span>
                 <span>去登录 <img src="/img/back.png" alt=""></span>
             </router-link>
@@ -21,6 +21,7 @@
                 <em>去逛逛</em>
             </router-link>
         </div>
+        <div @click="getProducts()">asdfdsaf{{$store.getters.getProducts}}</div>
         <!-- 推荐 -->
         <div>
             <div>
@@ -31,7 +32,6 @@
             </div>
         </div>
         <goTop />
-        <Footer />
     </div>
 </template>
 
@@ -44,7 +44,8 @@ export default {
     name: "Car",
     data () {
         return {
-            list: []
+            list: [],
+            show: sessionStorage['uid']
         }
     },
     methods: {
@@ -54,6 +55,9 @@ export default {
                     // console.log(res)
                     this.list = res.data.list;
                 })
+        },
+        getProducts() {
+            console.log(this.$store.getters.getProducts)
         }
     },
     created() {

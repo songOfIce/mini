@@ -106,7 +106,8 @@ export default {
             history.go(-1);
         },
         add() {
-            Toast("添加成功")
+            Toast("添加成功");
+            this.$store.commit("addProduct",111)
         }
     },
     created() {

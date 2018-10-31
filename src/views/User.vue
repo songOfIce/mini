@@ -54,8 +54,7 @@ export default {
     },
     methods: {
         logout() {
-            // sessionStorage.clear();
-             sessionStorage.removeItem('uid')
+            sessionStorage.removeItem('uid')
             history.go(0);
         }
     },
