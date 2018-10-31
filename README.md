@@ -4,6 +4,10 @@ npm install
 npm run serve
 #打包
 npm run build
+#用到的依赖
+vue-router,
+vux,
+node-sass
 #开发中遇到的问题
 1.如何监听本页面地址栏url,和上一页面url
     解决: 通过$route(to,from){
@@ -16,7 +20,11 @@ npm run build
     解决: window.onscroll = function(){
         document.documentElement.scrollTop
     }
+    或 wiodow.scrollY
 4.eye(小眼睛): <svg width="100%" height="100%" version="1.1" xmlns="http://www.w3.org/2000/svg">
         <path class="eye_outer" d="M0 8 C6 0,14 0,20 8, 14 16,6 16, 0 8 z"></path>
         <circle class="eye_inner" cx="10" cy="8" r="3"></circle>
     </svg>
+5.路由跳转动画效果:
+enter,enter-active,leave,leave-active并且在路由词典里加一个meta:{index: *}
+6.通过vue点击事件 获取当前元素方法   handleEvenet(e){ e.currentTarget}

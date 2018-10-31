@@ -2,16 +2,17 @@
     <div class="car">
         <mt-header title="购物车">
             <router-link to="/" slot="left">
-                <img src="http://localhost:8085/img/back.png">
+                <img src="/img/back.png">
             </router-link>
             <mt-button slot="right">
-                <img src="http://localhost:8085/img/search.png">
+                <img src="/img/search.png">
             </mt-button>
         </mt-header>
         <div class="login">
+            <product-list />
             <router-link to="javascript:;">
                 <span>登录后享受更多优惠</span>
-                <span>去登录 <img src="http://localhost:8085/img/back.png" alt=""></span>
+                <span>去登录 <img src="/img/back.png" alt=""></span>
             </router-link>
         </div>
         <div class="car-item">
@@ -23,7 +24,7 @@
         <!-- 推荐 -->
         <div>
             <div>
-                <img style="width: 100%;" src="http://localhost:8085/img/love.jpg" alt="">
+                <img style="width: 100%;" src="/img/love.jpg" alt="">
             </div>
             <div class="car-footer">
                 <List :imglist="list" />
@@ -38,6 +39,7 @@
 import List from '../components/sub/list.vue'
 import Footer from '../components/footer.vue'
 import goTop from '../components/sub/goTop.vue'
+import productList from '../components/sub/productList.vue'
 export default {
     name: "Car",
     data () {
@@ -61,7 +63,8 @@ export default {
     components: {
         List,
         Footer,
-        goTop
+        goTop,
+        productList
     }
 }
 </script>
