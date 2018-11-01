@@ -34,5 +34,23 @@ router.get('/',(req,res)=>{
         if(progress == 150) res.send(obj);
     })
 })
-
+router.get('/cart',(req,res)=>{
+    var list = req.query.list;
+    var obj = {};
+    var progress = 0;
+    var sql = "SELECT title,price FROM product WhERE pid=? ";
+    if(!list[0]) return res.send({code: -1, msg: "wu"});
+    for(let i = 0;i<list.length;i++){
+        pool.query(sql,[list[i]],(err,result)=>{
+            if(err) throw err;
+            obj.info[i] = result;
+        })
+        var sql = "SELECT img FROM class_detail WHERE pid=? ";
+        pool.query(sql,[pid],(err,result)=>{
+            if(err) throw err;
+            obj.img[i] = result;
+        })
+    }
+    
+})
 module.exports = router;

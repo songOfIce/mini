@@ -20,7 +20,7 @@ export default {
 
 <style scoped>
     .checkbox{
-        display: inline-block;
+        align-self: center;
         width: 20px;
         height: 20px;
         border: 1px solid #BFB9B9;

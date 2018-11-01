@@ -9,19 +9,19 @@
             </mt-button>
         </mt-header>
         <div class="login">
-            <product-list  v-if="show" />
+            <product-list :data="data"  v-if="uid" />
             <router-link to="javascript:;" v-else>
                 <span>登录后享受更多优惠</span>
                 <span>去登录 <img src="/img/back.png" alt=""></span>
             </router-link>
         </div>
-        <div class="car-item">
+        <div class="car-item" v-if="!data[0]">
             <router-link to="javascript: ;">
                 <span>购物车还是空的</span>
                 <em>去逛逛</em>
             </router-link>
         </div>
-        <div @click="getProducts()">asdfdsaf{{$store.getters.getProducts}}</div>
+        <!-- <div @click="getProducts()">asdfdsaf{{$store.getters.getProducts}}</div> -->
         <!-- 推荐 -->
         <div>
             <div>
@@ -30,6 +30,10 @@
             <div class="car-footer">
                 <List :imglist="list" />
             </div>
+        </div>
+        <!-- 结算 -->
+        <div class="total">
+
         </div>
         <goTop />
     </div>
@@ -45,7 +49,8 @@ export default {
     data () {
         return {
             list: [],
-            show: sessionStorage['uid']
+            uid: sessionStorage['uid'],
+            data: []
         }
     },
     methods: {
@@ -54,10 +59,21 @@ export default {
                 .then(res =>{
                     // console.log(res)
                     this.list = res.data.list;
-                })
+                });
+            if(this.uid != undefined){
+                this.$http.get('http://localhost:5050/user/find?uid='+this.uid)
+                    .then(res => {
+                        console.log(res);
+                        if(res.data.code == -1) console.log(res)
+                        this.data = res.data;
+                        
+                    })
+            }
         },
         getProducts() {
-            console.log(this.$store.getters.getProducts)
+            // console.log(this.$store.getters.getProducts)
+            
+
         }
     },
     created() {

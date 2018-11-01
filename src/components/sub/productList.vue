@@ -1,32 +1,34 @@
 <template>
-    <div class="productList">
-        <div class="select">
-            <checkbox />
-            <img src="//i1.mifile.cn/a1/pms_1537324041.13069123!180x1800.jpg" alt="">
-        </div>
-        <div class="info">
-            <p>小米8 青春 全网通版 6GB内存 深空灰 128GB</p>
-            <div class="price">售价: ¥ 1200 元</div>
-            <add />
+    <div v-if="data[0] != ''">
+        <div class="productList" v-for="(item,i) in data" :key="i">
+            <div class="select">
+                <checkbox />
+                <img :src="item.img?item.img:''" alt="">
+            </div>
+            <div class="info">
+                <p>{{item.title != ''?item.title:''}}</p>
+                <div class="price">售价: ¥ {{item.price != ''?item.price:''}} 元</div>
+                <add :p="item.pid" />
+            </div>
         </div>
     </div>
 </template>
 
-<script lang="ts">
-import Vue from 'vue'
+<script>
 import checkbox from './checkbox.vue'
 import add from './add.vue'
-export default Vue.extend({
+export default({
     name: "ProductList",
     data() {
         return {
             isC: false
         }
     },
+    props: ["data"],
     components: {
         checkbox,
         add
-    }
+    },
 })
 </script>
 <style lang="scss" scoped>
@@ -34,17 +36,19 @@ export default Vue.extend({
     display: flex;
     font-size: .9rem;
     padding: .7rem 0;
+    overflow: hidden;
 }
     .select{
-        width: 40%;
+        display: flex;
+        width: 35%;
         height: 100px;
         padding: 0 .5rem;
     }
-    
     .select img{
-        width: auto;
+        width: 80px;
         height: 100%;
-        vertical-align: middle;
+        align-self: center;
+        margin-left: 10px;
     }
     .price{
         font-size: .6rem;

@@ -2,6 +2,17 @@ SET NAMES UTF8;
 DROP DATABASE IF EXISTS xm;
 CREATE DATABASE xm CHARSET=utf8;
 USE xm;
+#用户购物车表
+drop TABLE IF EXISTS user_product;
+CREATE TABLE user_product(
+    id INT PRIMARY KEY AUTO_INCREMENT,
+    uid CHAR(11),
+    pid INT,
+    title VARCHAR(64),
+    price VARCHAR(64),
+    img VARCHAR(255)
+);
+
 #用户
 drop TABLE IF EXISTS users; 
 CREATE TABLE users(

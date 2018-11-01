@@ -63,17 +63,22 @@
         <goTop />
         <div class="cart">
             <div class="cart-link">
-                <div> 
+                <router-link to="/home/commend">
+                <div to="/home/commend" target="div"> 
                     <img src="/img/index.png" alt=""> 
-                    <p>首页</p>
+                    <p class="cart-title">首页</p>
                 </div>
+                </router-link>
+                <router-link to="/car">
                 <div> 
                     <img src="/img/car.png" alt=""> 
-                    <p>购物车</p>
+                    <p class="cart-title">购物车</p>
                 </div>
+                </router-link>
             </div>
             <div class="cart-add" @click="add()">加入购物车</div>
         </div>
+        
         <div class="goback" @click="goback()">
             <img src="/img/goback.png" alt="">
         </div>
@@ -81,33 +86,53 @@
 </template>
 
 <script>
-import goTop from '../components/sub/goTop.vue'
-import { Toast } from 'mint-ui';
+import goTop from "../components/sub/goTop.vue";
+import { Toast } from "mint-ui";
+import { MessageBox } from "mint-ui";
 export default {
     name: "Detail",
     data() {
         return {
-            info: [],
-            img: [],
-            icon: [],
-            pid: this.$route.params.pid
-        }
+        info: [],
+        img: [],
+        icon: [],
+        pid: this.$route.params.pid,
+        uid: sessionStorage["uid"],
+        };
     },
     methods: {
         getData() {
-            this.$http.get("http://localhost:5050/detail?pid="+this.pid)
-                .then(res =>{
-                    this.img = res.data.img;
-                    this.info =res.data.info[0];
-                    this.icon = res.data.icon;
-                })
+        this.$http
+            .get("http://localhost:5050/detail?pid=" + this.pid)
+            .then(res => {
+            this.img = res.data.img;
+            this.info = res.data.info[0];
+            this.icon = res.data.icon;
+            });
         },
         goback() {
-            history.go(-1);
+        history.go(-1);
         },
         add() {
-            Toast("添加成功");
-            this.$store.commit("addProduct",111)
+        //   console.log(this.uid);
+        if (this.uid == undefined) {
+            MessageBox({
+                title: "提示",
+                message: "当前未登录,是否去登陆",
+                showCancelButton: true
+            }).then(action => {
+            if (action == 'confirm') {
+                this.$router.push('/login')
+            }else return;
+            });
+            
+        }else{
+            this.$http.post("http://localhost:5050/user/add",`pid=${this.pid}&uid=${this.uid}&title=${this.info.option.slice(0,-3)}&price=${this.info.price}&img=${this.img[0].img}`).then(res => {
+                console.log(res);
+                if(res.data.code) Toast({message: '添加成功',iconClass: 'mint-toast-icon mintui mintui-success'});;
+            });
+        }
+        //   this.$store.commit("addProduct", this.pid);
         }
     },
     created() {
@@ -116,130 +141,145 @@ export default {
     components: {
         goTop
     }
-}
+};
 </script>
 
 <style scoped>
-.detail{
-    position: relative;
+.detail {
+  position: relative;
 }
-.detail-img{
-    position: relative;
-    height: 412px;
+.detail-img {
+  position: relative;
+  height: 412px;
 }
-.mint-swipe{
-    width: auto;
-    height: 100%;
+.mint-swipe {
+  width: auto;
+  height: 100%;
 }
-.detail-goods{
-    padding: 15px;
+.detail-goods {
+  padding: 15px;
 }
-.detail-title{
-    font-size: 25px;
-    padding-top: 20px;
-    padding-left: 20px;
+.detail-title {
+  font-size: 25px;
+  padding-top: 20px;
+  padding-left: 20px;
 }
 .detail-label,
-.detail-subtitle{
-    font-size: 14px;
+.detail-subtitle {
+  font-size: 14px;
 }
-.detail-label{
-    color: #f56d03;
+.detail-label {
+  color: #f56d03;
 }
-.detail-price{
-    font-size: 25px;
-    padding: 15px 0;
+.detail-price {
+  font-size: 25px;
+  padding: 15px 0;
 }
-.detail-icon{
-    position: relative;
-    height: 80px;
-    margin: 0 -15px;
-    padding: 0;
-    overflow-x: auto;
+.detail-icon {
+  position: relative;
+  height: 80px;
+  margin: 0 -15px;
+  padding: 0;
+  overflow-x: auto;
 }
-.detail-container{
-    position: absolute;
-    left: 0;
-    display: flex;
-    flex-wrap: nowrap;
-    height: 80px;
+.detail-container {
+  position: absolute;
+  left: 0;
+  display: flex;
+  flex-wrap: nowrap;
+  height: 80px;
 }
-.icon-item{
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    width: 80px;
-    height: 80px;
+.icon-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 80px;
+  height: 80px;
 }
-.icon-item img{
-    width: auto;
-    height: 1.5rem;
+.icon-item img {
+  width: auto;
+  height: 1.5rem;
 }
-.icon-font{
-    font-size: 12px;
+.icon-font {
+  font-size: 12px;
 }
-.serve{
-    display: flex;
-    justify-content: flex-start;
-    font-size: 14px;
-    color: #737373;
-    padding: 10px; 
-    border: 1px solid #ECECEC;
-    border-radius: 8px;
-    margin-bottom: 10px;
+.serve {
+  display: flex;
+  justify-content: flex-start;
+  font-size: 14px;
+  color: #737373;
+  padding: 10px;
+  border: 1px solid #ececec;
+  border-radius: 8px;
+  margin-bottom: 10px;
 }
-.serve img{
-    width: auto;
-    height: 10px;
-    margin: 0 5px 0 10px;
+.serve img {
+  width: auto;
+  height: 10px;
+  margin: 0 5px 0 10px;
 }
-.serve-item div span:first-child{
-    margin-right: 20px;    
+.serve-item div span:first-child {
+  margin-right: 20px;
 }
-.serve-promise{
-    font-size: 12px;
+.serve-promise {
+  font-size: 12px;
 }
 /* 加入购物车 */
 .cart,
-.cart-link{
-    display: flex;
-    justify-content: space-between;
+.cart-link {
+  display: flex;
+  justify-content: space-between;
 }
-.cart{
-    position: fixed;
-    left: 5%;
-    right: 5%;
-    bottom: 10px;
-    height: 55px;
-    padding: 5px 25px ;
-    border: 1px solid #E5E5E5;
-    border-radius: 10px;
-    box-shadow: 0 2px 4px -1px rgba(0,0,0,.2), 0 4px 5px rgba(0,0,0,.14), 0 1px 10px rgba(0,0,0,.12);
-    background-color: hsla(0,0%,100%,.96)!important;
+.cart {
+  position: fixed;
+  left: 5%;
+  right: 5%;
+  bottom: 10px;
+  height: 55px;
+  padding: 5px 25px;
+  border: 1px solid #e5e5e5;
+  border-radius: 10px;
+  box-shadow: 0 2px 4px -1px rgba(0, 0, 0, 0.2), 0 4px 5px rgba(0, 0, 0, 0.14),
+    0 1px 10px rgba(0, 0, 0, 0.12);
+  background-color: hsla(0, 0%, 100%, 0.96) !important;
 }
-.cart-link{
-    width: 30%;
-    font-size: 14px;
-    text-align: center;
+.cart-link {
+  width: 30%;
+  text-align: center;
 }
-.cart-link img{
-    width: auto;
-    height: 25px;
+.cart-title {
+  font-size: 12px;
 }
-.cart-add{
-    width: 150px;
-    height: 40px;
-    line-height: 40px;
-    text-align: center;
-    padding: 0 10px;
-    background: #FF6700;
-    color: white;
-    border-radius: 20px;
+.cart-link img {
+  width: auto;
+  height: 25px;
+}
+.cart-add {
+  width: 150px;
+  height: 40px;
+  line-height: 40px;
+  text-align: center;
+  padding: 0 10px;
+  background: #ff6700;
+  color: white;
+  border-radius: 20px;
+}
+/* 模态框success图片类 */
+.icon{
+    width: 20px;
+    height: 20px;
+    background: red;
+    border: 1px solid green;
+}
+.icon::before{
+    content: "✔";
+    font-size: 20px;
+    color: #fff;
 }
 /* 后退 */
-.goback{
-    position: absolute;
-    top: 1rem;
-    left: 1rem;
+.goback {
+  position: absolute;
+  top: 1rem;
+  left: 1rem;
 }
 </style>
