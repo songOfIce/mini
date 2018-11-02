@@ -7,7 +7,7 @@ export default {
     name: "Check",
     data() {
         return {
-            isC: false
+            isC: true
         }
     },
     methods: {

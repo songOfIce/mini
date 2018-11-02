@@ -160,13 +160,14 @@ export default {
   padding: 15px;
 }
 .detail-title {
-  font-size: 25px;
+  font-size: 23px;
   padding-top: 20px;
   padding-left: 20px;
 }
 .detail-label,
 .detail-subtitle {
   font-size: 14px;
+  color: #757575;
 }
 .detail-label {
   color: #f56d03;

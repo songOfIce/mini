@@ -9,7 +9,7 @@
             </mt-button>
         </mt-header>
         <div class="login">
-            <product-list :data="data"  v-if="uid" />
+            <product-list @handleCount="calculate" :data="data"  v-if="uid" />
             <router-link to="javascript:;" v-else>
                 <span>登录后享受更多优惠</span>
                 <span>去登录 <img src="/img/back.png" alt=""></span>
@@ -33,7 +33,12 @@
         </div>
         <!-- 结算 -->
         <div class="total">
-
+            <div class="total-price">
+                <span>共0件 金额:</span>
+                <span><b>{{total}} </b> 元</span>
+            </div>
+            <div>继续购物</div>
+            <div>去结算</div>
         </div>
         <goTop />
     </div>
@@ -50,7 +55,8 @@ export default {
         return {
             list: [],
             uid: sessionStorage['uid'],
-            data: []
+            data: [],
+            total: 0
         }
     },
     methods: {
@@ -65,10 +71,15 @@ export default {
                     .then(res => {
                         console.log(res);
                         if(res.data.code == -1) console.log(res)
-                        this.data = res.data;
-                        
+                            this.data = res.data;
+                        for(let i=0;i<this.data.length;i++){
+                            // this.total = this.data[i].price*this.data[i].single
+                        }
                     })
             }
+        },
+        calculate(item){
+            console.log(item)
         },
         getProducts() {
             // console.log(this.$store.getters.getProducts)
@@ -90,11 +101,10 @@ export default {
 </script>
 
 <style scoped>
-.car{
-    padding-bottom: 65px;
-}
+
 .login{
     padding-top: 50px;
+    position: relative;
 }
 .login a{
     display: flex;
@@ -149,5 +159,43 @@ export default {
 }
 .car-footer-item{
     width: 49%;
+}
+/* 结算 */
+.total{
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: #fff;
+    z-index: 99;
+    box-shadow: 0 3px 14px 2px rgba(0,0,0,.12);
+    width: 100%;
+    height: 50px; 
+    display: flex;
+    /* justify-content: space-between; */
+}
+.total div{
+    width: 33.3333%;
+    text-align: center;
+}
+.total div:not(:first-child){
+    line-height: 50px;
+}
+.total .total-price{
+    display: flex;
+    flex-direction: column;
+    color: #999999;
+    font-size: 14px;
+}
+.total div:nth-child(2){
+    background: #F4F4F4;
+}
+.total div:last-child{
+    background: #FF6700;
+    color: #fff;
+}
+.total-price b{
+    color:#FF6700;
+    font-size: 20px;
 }
 </style>

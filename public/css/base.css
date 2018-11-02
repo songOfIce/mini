@@ -11,6 +11,10 @@ a{
     color: #666;
     font-size: 16px;
 }
+
+a{
+    -webkit-tap-highlight-color:transparent;
+}
 /* 头部导航 start */
 .mint-header {
     position: fixed;
