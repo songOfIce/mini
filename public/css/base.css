@@ -11,14 +11,8 @@ a{
     color: #666;
     font-size: 16px;
 }
-<<<<<<< HEAD
 a{
     -webkit-tap-highlight-color: transparent;
-=======
-
-a{
-    -webkit-tap-highlight-color:transparent;
->>>>>>> 4d53ff5b932052fe6149bfa6192e150f1306a93b
 }
 /* 头部导航 start */
 .mint-header {
