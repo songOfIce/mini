@@ -6,7 +6,6 @@ var router = express.Router();
 router.post('/login',(req,res)=>{
     var uid = req.body.uid;
     var upwd = req.body.upwd;
-    console.log(uid,upwd);
     if(!uid) return res.send({code: -1, msg: "没有用户名"});
     if(!upwd) return res.send({code: -1, msg: "密码不能为空"});
     var sql = "SELECT uid,uname FROM users WHERE uid=? AND upwd=? ";

@@ -81,7 +81,7 @@ export default {
                     setTimeout(function(){ location.href= '/home/commend'},1000)
                    
                 }
-            });
+        });
     },
     //   切换密码模式
         show(e) {

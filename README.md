@@ -38,3 +38,5 @@ enter,enter-active,leave,leave-active并且在路由词典里加一个meta:{inde
     <i class="mint-toast-icon mintui mintui-field-warning"></i> 
     <i class="mint-toast-icon mintui mintui-success"></i> 
     <i class="mint-toast-icon mintui mintui-field-success"></i> 
+8.-webkit- a标签点击是背景蓝色高亮取消: 
+        -webkit-tap-highlight-color:transparent;
