@@ -19,7 +19,7 @@ app.listen(5050,()=>{console.log("success: "+ port)});
 const home = require("./routes/home.js");
 const fenlei = require('./routes/fenlei.js');
 const detail = require('./routes/detail.js');
-const user = require('./routes/user.ts');
+const user = require('./routes/user.js');
 app.use(express.static(__dirname+"/public"));
 app.use(bodyParser.urlencoded({extended: false}));
 

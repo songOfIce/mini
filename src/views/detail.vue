@@ -128,8 +128,8 @@ export default {
             
         }else{
             this.$http.post("http://localhost:5050/user/add",`pid=${this.pid}&uid=${this.uid}&title=${this.info.option.slice(0,-3)}&price=${this.info.price}&img=${this.img[0].img}`).then(res => {
-                console.log(res);
-                if(res.data.code) Toast({message: '添加成功',iconClass: 'mint-toast-icon mintui mintui-success'});;
+                // console.log(res);
+                if(res.data.code) Toast({message: '添加成功',iconClass: 'mint-toast-icon mintui mintui-success',duration: 1000});;
             });
         }
         //   this.$store.commit("addProduct", this.pid);

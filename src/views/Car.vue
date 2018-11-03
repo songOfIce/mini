@@ -1,13 +1,20 @@
 <template>
     <div class="car">
-        <mt-header title="购物车">
-            <router-link to="/" slot="left">
-                <img src="/img/back.png">
-            </router-link>
-            <mt-button slot="right">
-                <img src="/img/search.png">
-            </mt-button>
-        </mt-header>
+        <!-- <transition name="money"> -->
+        <div class="car-header">
+            <div>
+                <router-link to="/home">
+                    <img src="/img/back.png">
+                </router-link>
+            </div>
+            <div>购物车</div>
+            <div>
+                <router-link to="">
+                    <img src="/img/search.png">
+                </router-link>
+            </div>
+        </div>
+         <!-- </transition> -->
         <div class="login">
             <product-list :data="data"  v-if="uid" />
             <router-link to="javascript:;" v-else>
@@ -32,9 +39,16 @@
             </div>
         </div>
         <!-- 结算 -->
-        <div class="total">
-
-        </div>
+        <transition name="money">
+            <div class="total" v-if="data[0]">
+                <div class="total-money">
+                    <span>共1件 金额:</span>
+                    <span><b>{{total}}</b> 元</span>
+                </div>
+                <div>继续购物</div>
+                <div>去结算</div>
+            </div>
+        </transition>
         <goTop />
     </div>
 </template>
@@ -50,7 +64,8 @@ export default {
         return {
             list: [],
             uid: sessionStorage['uid'],
-            data: []
+            data: [],
+            single: 1
         }
     },
     methods: {
@@ -63,28 +78,40 @@ export default {
             if(this.uid != undefined){
                 this.$http.get('http://localhost:5050/user/find?uid='+this.uid)
                     .then(res => {
-                        console.log(res);
+                        // console.log(res);
                         if(res.data.code == -1) console.log(res)
                         this.data = res.data;
-                        
+                       for(var item of this.data){
+                            this.$store.commit('setProduct',{'id':item.id,'price':item.price,'single': item.single})
+                        }
                     })
             }
         },
-        getProducts() {
-            // console.log(this.$store.getters.getProducts)
-            
-
-        }
+        // setSingle(num) {
+        //     // this.single = num
+        //     console.log("这是爷爷",num)
+        // }
     },
-    created() {
+    mounted() {
         this.getData();
         window.onscroll = null;
+        
     },
     components: {
         List,
         Footer,
         goTop,
         productList
+    },
+    computed: {
+        total() {
+            var total = 0;
+            for(var item of this.$store.getters.getProduct){
+                // console.log(parseInt(item.price),item.single)
+                total += parseInt(item.price) * item.single
+            }
+            return total
+        }
     }
 }
 </script>
@@ -92,6 +119,23 @@ export default {
 <style scoped>
 .car{
     padding-bottom: 65px;
+}
+.car-header{
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    display: flex;
+    justify-content: space-between;
+    height: 50px;
+    background:#F2F2F2;
+    padding: 0 10px;
+    align-items: center;
+    color: #666666;
+}
+.car-header img{
+    width: auto;
+    height: 25px;
 }
 .login{
     padding-top: 50px;
@@ -149,5 +193,50 @@ export default {
 }
 .car-footer-item{
     width: 49%;
+}
+/* 去结算 */
+.total{
+    display: flex;
+    height: 50px;
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: #fff;
+    z-index: 99;
+    box-shadow: 0 3px 14px 2px rgba(0,0,0,.12);
+    text-align: center;
+}
+.total div{
+    width: 33.33333%;
+}
+.total div:nth-child(2){
+    background: #F4F4F4;
+}
+.total div:last-child{
+    background: #FF6700;
+    color: #fff;
+}
+.total div:not(:first-child){
+    line-height: 50px;
+}
+.total-money{
+    display: flex;
+    flex-direction: column;
+    font-size: 14px;
+    color: #999999;
+}
+.total-money b{
+    color: #ff6700;
+    font-size: 22px;
+}
+/* 进场动画 */
+.money-enter-active{
+    will-change: transfrom;
+    transition: all .5s;
+    position: absolute;
+}
+.money-enter{
+    transform: translate3d(0,100%,0);
 }
 </style>

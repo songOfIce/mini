@@ -10,7 +10,8 @@ CREATE TABLE user_product(
     pid INT,
     title VARCHAR(64),
     price VARCHAR(64),
-    img VARCHAR(255)
+    img VARCHAR(255),
+    single INT
 );
 
 #用户
