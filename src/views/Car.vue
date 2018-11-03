@@ -82,7 +82,7 @@ export default {
                         if(res.data.code == -1) console.log(res)
                         this.data = res.data;
                        for(var item of this.data){
-                            this.$store.commit('setProduct',{'id':item.id,'price':item.price,'single': item.single})
+                            this.$store.commit('setProduct',{'id':item.id,'price':item.price,'single': item.single,'count':this.data.length})
                         }
                     })
             }

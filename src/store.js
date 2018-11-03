@@ -18,18 +18,18 @@ export default new Vuex.Store({
             }
         },
         setProduct(state,obj){
-            if(state.a == 1){
+            if(state.a < obj.count){
                 state.a++
                 state.product.push(obj) 
-            }else{
-                for(var i=0;i<state.product.length;i++){
-                    console.log(state.product[i].id,obj.id)
-                    if(state.product[i].id == obj.id)
-                        
-                        state.product.push(obj)
-                    console.log(state.product)
-                }
             }
+            // else{
+            //     for(var i=0;i<state.product.length;i++){
+            //         console.log(state.product[i].id,obj.id)
+            //         if(state.product[i].id != obj.id)
+            //             state.product.push(obj)
+            //         console.log(state.product)
+            //     }
+            // }
         },
         updateProduct(state,i){
             state.product.splice(i,1)
