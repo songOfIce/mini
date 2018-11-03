@@ -6,10 +6,10 @@ export default new Vuex.Store({
     state: {
         isDisplay: false,
         uid: sessionStorage['uid'],
-        product: [],
-        a: 1,
+        product: ''
     },
     mutations: {
+        // 显示隐藏
         setShow(state) {
             if (state.isDisplay) {
                 state.isDisplay = false;
@@ -17,38 +17,28 @@ export default new Vuex.Store({
                 state.isDisplay = true;
             }
         },
+        // 共享商品数据
         setProduct(state,obj){
-            if(state.a < obj.count){
-                state.a++
-                state.product.push(obj) 
-            }
-            // else{
-            //     for(var i=0;i<state.product.length;i++){
-            //         console.log(state.product[i].id,obj.id)
-            //         if(state.product[i].id != obj.id)
-            //             state.product.push(obj)
-            //         console.log(state.product)
-            //     }
-            // }
+            state.product = obj
         },
+        // 更新商品数据
         updateProduct(state,i){
             state.product.splice(i,1)
         },
-        singleIncrement(state,i){
-            state.product[i].single++
-            console.log(state.product[i].single)
-            console.log(state.product)
+        // 商品个数增加或减少
+        single(state,obj){
+            state.product[obj.i].single = obj.s
         },
-        singleSubtract(state,i){
-            state.product[i].single--
-            console.log(state.product[i].single)
-            console.log(state.product)
+        // 用户购买商品状态
+        isbuy(state,i){
+            state.product[i].isbuy = !state.product[i].isbuy
         }
     },
     getters: {
         getShow: function (state) {
             return state.isDisplay;
         },
+        //获取商品数据
         getProduct: function(state){
             return state.product
         }

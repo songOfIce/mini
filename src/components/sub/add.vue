@@ -14,22 +14,21 @@ export default {
             single: this.s,
         }
     },
-    props: ["p",'s','i'],
+    props: ["p",'s','i','isbuy'],
     methods: {
         add(i) {
             if(i==1 && this.single > 1){
                 this.single--
-                this.$store.commit('singleSubtract',this.i)
+                this.$store.commit('single',{'i':this.i,'s':this.single})
             }
             if(i==2 && this.single < 10){
                 this.single++
-                this.$store.commit('singleIncrement',this.i)
+                this.$store.commit('single',{'i':this.i,'s':this.single})
             }
             this.$http.get('http://localhost:5050/user/sum?single='+this.single+'&id='+this.p)
                 .then(res =>{
                     if(res.data.code == -1) console.log(res.data.msg)
                 })
-            // this.$emit('add',this.single)
             
         },
         

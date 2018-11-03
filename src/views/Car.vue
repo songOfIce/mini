@@ -17,7 +17,7 @@
          <!-- </transition> -->
         <div class="login">
             <product-list :data="data"  v-if="uid" />
-            <router-link to="javascript:;" v-else>
+            <router-link to="/login" v-else>
                 <span>登录后享受更多优惠</span>
                 <span>去登录 <img src="/img/back.png" alt=""></span>
             </router-link>
@@ -28,7 +28,6 @@
                 <em>去逛逛</em>
             </router-link>
         </div>
-        <!-- <div @click="getProducts()">asdfdsaf{{$store.getters.getProducts}}</div> -->
         <!-- 推荐 -->
         <div>
             <div>
@@ -42,8 +41,8 @@
         <transition name="money">
             <div class="total" v-if="data[0]">
                 <div class="total-money">
-                    <span>共1件 金额:</span>
-                    <span><b>{{total}}</b> 元</span>
+                    <span>共{{total.num}}件 金额:</span>
+                    <span><b>{{total.total}}</b> 元</span>
                 </div>
                 <div>继续购物</div>
                 <div>去结算</div>
@@ -64,38 +63,28 @@ export default {
         return {
             list: [],
             uid: sessionStorage['uid'],
-            data: [],
-            single: 1
+            data: []
         }
     },
     methods: {
         getData() {
             this.$http.get("http://localhost:5050/home/banner?name=commend")
                 .then(res =>{
-                    // console.log(res)
                     this.list = res.data.list;
                 });
             if(this.uid != undefined){
                 this.$http.get('http://localhost:5050/user/find?uid='+this.uid)
                     .then(res => {
-                        // console.log(res);
                         if(res.data.code == -1) console.log(res)
                         this.data = res.data;
-                       for(var item of this.data){
-                            this.$store.commit('setProduct',{'id':item.id,'price':item.price,'single': item.single,'count':this.data.length})
-                        }
+                        this.$store.commit('setProduct',res.data)
+                    
                     })
             }
-        },
-        // setSingle(num) {
-        //     // this.single = num
-        //     console.log("这是爷爷",num)
-        // }
+        }
     },
-    mounted() {
+    created() {
         this.getData();
-        window.onscroll = null;
-        
     },
     components: {
         List,
@@ -106,11 +95,14 @@ export default {
     computed: {
         total() {
             var total = 0;
+            var num = 0;
             for(var item of this.$store.getters.getProduct){
-                // console.log(parseInt(item.price),item.single)
-                total += parseInt(item.price) * item.single
+                if(item.isbuy){
+                    total += parseInt(item.price) * item.single
+                    num += item.single
+                }
             }
-            return total
+            return {'total': total,'num': num}
         }
     }
 }
@@ -132,6 +124,7 @@ export default {
     padding: 0 10px;
     align-items: center;
     color: #666666;
+    z-index: 99;
 }
 .car-header img{
     width: auto;

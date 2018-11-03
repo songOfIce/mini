@@ -11,7 +11,8 @@ CREATE TABLE user_product(
     title VARCHAR(64),
     price VARCHAR(64),
     img VARCHAR(255),
-    single INT
+    single INT,
+    isbuy boolean
 );
 
 #用户

@@ -1,5 +1,5 @@
 <template>
-    <div :class="{'checkbox':true,'choose':isC}" @click="toggle()"></div>
+    <div :class="{'checkbox':1,'choose':isbuy}" @click="toggle()"></div>
 </template>
 
 <script>
@@ -7,12 +7,23 @@ export default {
     name: "Check",
     data() {
         return {
-            isC: false
+            isC: this.data.isbuy
         }
     },
+    props: ['data'],
     methods: {
         toggle() {
             this.isC = !this.isC;
+            this.$http.get('http://localhost:5050/user/buy?isbuy='+this.isC+"&id="+this.data.id).then(res =>{
+                if(res.data.code == -1)
+                console.log(res)
+            })
+            this.$store.commit('isbuy',this.data.i)
+        }
+    },
+    computed: {
+        isbuy() {
+            return this.data.isbuy
         }
     }
 }

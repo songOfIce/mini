@@ -24,10 +24,10 @@ router.post('/add',(req,res)=>{
     var img = req.body.img;
     // console.log(uid,pid,title,price,img)
     if(!uid || !pid || !title || !price || !img) return res.send({code: -1, msg: "没有该商品"});
-    var sql = "INSERT INTO user_product VALUES(null,?,?,?,?,?,1)";
+    var sql = "INSERT INTO user_product VALUES(null,?,?,?,?,?,1,1)";
     pool.query(sql,[uid,pid,title,price,img],(err,result)=>{
         if(err) throw err;
-        console.log(result)
+        // console.log(result)
         if (result.affectedRows>0)
             res.send({ code: 1, msg: "添加成功"})
     })
@@ -63,6 +63,17 @@ router.get('/sum',(req,res)=>{
         if(err) throw err;
         if(result.affectedRows > 0)
             res.send({code: 1, msg: '修改成功'})
+    })
+})
+// 改变商品购买状态
+router.get('/buy',(req,res)=>{
+    var isbuy = req.query.isbuy;
+    var id = req.query.id;
+    var sql = "UPDATE user_product SET isbuy=? WHERE id=?";
+    pool.query(sql,[isbuy,id],(err,result)=>{
+        if(err) throw err;
+        if(result.affectedRows > 0)
+        res.send({code: 1, msg: "修改成功"})
     })
 })
 module.exports = router;
