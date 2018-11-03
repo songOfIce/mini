@@ -1,6 +1,6 @@
 <template>
     <div v-if="data[0] != ''">
-        <div class="productList" v-if="item.id" v-for="(item,i) in list" :key="i">
+        <div class="productList" v-if="item.id" v-for="(item,i) in goodsList" :key="i">
             <div class="select">
                 <checkbox />
                 <img :src="item.img?item.img:''" alt="">

@@ -16,7 +16,7 @@
         </div>
          <!-- </transition> -->
         <div class="login">
-            <product-list @handleCount="calculate" :data="data"  v-if="uid" />
+            <product-list :data="data"  v-if="uid" />
             <router-link to="javascript:;" v-else>
                 <span>登录后享受更多优惠</span>
                 <span>去登录 <img src="/img/back.png" alt=""></span>
