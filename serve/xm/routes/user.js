@@ -2,6 +2,21 @@ const express = require('express');
 const pool = require('../pool');
 var router = express.Router();
 
+//用户注册
+router.post('/register',(req,res)=>{
+    var phone = req.query.phone;
+    var uname = req.query.uname;
+    var password = req.query.password;
+    if(!phone) return res.send({code: -1, msg: "手机号不能为空"})
+    if(!uname) return res.send({code: -1, msg: "用户名不能为空"})
+    if(!password) return res.send({code: -1, msg: "请设置密码"})
+    var sql = "INSERT INTO user VALUES(null,?,?,?,?,'')"
+    pool.query(sql,[phone,uname,password,phone],(err,result)=>{
+        if(err) throw err;
+        if(result.affectedRows > 0)
+        res.send({code: 1, msg: "注册成功"})
+    })
+})
 // 用户登录
 router.post('/login',(req,res)=>{
     var uid = req.body.uid;

@@ -4,16 +4,24 @@
         <div style="font-size: 1.3rem;">小米账号注册</div>
         <div>
             <div class="register-phone">
-                <input class="input" type="text" placeholder="账号">
+                <input class="input" type="text" v-model="phone" placeholder="手机号">
             </div>
             <div class="register-phone">
-                <input class="input" type="text" placeholder="密码">
+                <input class="input" type="text" v-model="uname" placeholder="用户名">
             </div>
             <div class="register-phone">
-                <input class="input" type="text" placeholder="重复密码">
+                <input class="input" type="text" v-model="password" placeholder="密码">
+            </div>
+            <div class="register-phone">
+                <input class="input" type="text" v-model="pass" placeholder="重复密码">
             </div>
         </div>
-        <div class="register-login">立即注册</div>
+        <!-- 提示 -->
+        <div class="register-msg" v-if="msg">
+            <em class="msg-icon"></em>
+            <span>{{msg}}</span>
+        </div>
+        <div :class="{'register-login':1,'disabled':show}">立即注册</div>
         <div class="register-login user-login"><router-link to="/login">用户密码登录</router-link></div>
         <div><img src="/img/login.png" alt=""></div>
     </div>
@@ -24,10 +32,29 @@ export default {
   name: "Register",
   data() {
     return {
-    };
+        phone: "",
+        uname: "",
+        password: "",
+        pass: "",
+        msg: "",
+        show: true
+    }
   },
   methods: {
-    
+        register () {
+            var reg = /^1[34578]\d{9}$/
+            if(!this.phone) return this.msg = "手机号不能为空"
+            if(!reg.test(this.phone)) return this.msg = "手机格式不正确"
+            if(!this.uname) return this.msg = "请设置用户名"
+            if(!this.password) return this.msg = "请设置密码"
+            if(!this.pass) return this.msg = "请再次输入密码"
+            if(this.password != this.pass) return this.msg = "两次密码不一致"
+            this.show = false;
+            this.$http.post('http://localhost:5050/user/register',`phone=${this.phone}&uname=${this.uname}&password=${this.password}`)
+                .then(res =>{
+                    console.log(res)
+                })
+      }
   },
   created() {},
   mounted() {
@@ -93,5 +120,7 @@ export default {
   color: #000;
   border: 1px solid #d3d3d3;
 }
-
+.disabled{
+    background: #d3d3d3;
+}
 </style>
