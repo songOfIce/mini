@@ -70,9 +70,10 @@
                 </div>
                 </router-link>
                 <router-link to="/car">
-                <div> 
+                <div class="car-badge"> 
                     <img src="/img/car.png" alt=""> 
                     <p class="cart-title">购物车</p>
+                    <mt-badge type="error" size="small" v-if="badge">{{badge}}</mt-badge>
                 </div>
                 </router-link>
             </div>
@@ -131,8 +132,16 @@ export default {
                 // console.log(res);
                 if(res.data.code) Toast({message: '添加成功',iconClass: 'mint-toast-icon mintui mintui-success',duration: 1000});;
             });
+            if(this.uid != undefined){
+                this.$http.get('http://localhost:5050/user/find?uid='+this.uid)
+                    .then(res => {
+                        if(res.data.code == -1) console.log(res)
+                        this.data = res.data;
+                        this.$store.commit('setProduct',res.data)
+                    
+                    })
+            }
         }
-        //   this.$store.commit("addProduct", this.pid);
         }
     },
     created() {
@@ -140,6 +149,15 @@ export default {
     },
     components: {
         goTop
+    },
+    computed: {
+        badge() {
+            var num = 0;
+            for(var item of this.$store.getters.getProduct){
+                num += item.single
+            }
+            return num
+        }
     }
 };
 </script>
@@ -282,5 +300,16 @@ export default {
   position: absolute;
   top: 1rem;
   left: 1rem;
+}
+/* 徽章 */
+.car-badge{
+    position: relative;
+}
+.car-badge .mint-badge{
+    position: absolute;
+    top:0;
+    right: -8px;
+    font-size: 8px;
+    padding: 1px 7px;
 }
 </style>

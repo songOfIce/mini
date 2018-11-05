@@ -4,6 +4,7 @@
           <router-link :to="item.path">
             <img :src="url==item.path?item.img2:item.img1">
             <p :class="url==item.path?'active':''">{{item.name}}</p>
+            <mt-badge type="error" size="small" v-if="item.name=='购物车'&&badge">{{badge}}</mt-badge>
           </router-link>
         </div>
     </div> 
@@ -48,7 +49,10 @@ export default {
             }else{
                 return  this.$route.path
             }
-      }
+        },
+        badge() {
+            return this.$store.getters.getSingle
+        }
   }
 };
 </script>
@@ -78,8 +82,16 @@ export default {
 }
 #footer .app-footer-item {
   text-align: center;
+  position: relative;
 }
 .active{
     color: #f56d03;
+}
+.app-footer-item .mint-badge{
+    position: absolute;
+    top:0;
+    right: -10px;
+    font-size: 8px;
+    padding: 1px 7px;
 }
 </style>

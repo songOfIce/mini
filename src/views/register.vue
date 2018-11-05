@@ -10,10 +10,10 @@
                 <input class="input" type="text" v-model="uname" placeholder="用户名">
             </div>
             <div class="register-phone">
-                <input class="input" type="text" v-model="password" placeholder="密码">
+                <input class="input" type="password" v-model="upwd" placeholder="密码">
             </div>
             <div class="register-phone">
-                <input class="input" type="text" v-model="pass" placeholder="重复密码">
+                <input class="input" type="password" v-model="upwd2" placeholder="重复密码">
             </div>
         </div>
         <!-- 提示 -->
@@ -21,43 +21,70 @@
             <em class="msg-icon"></em>
             <span>{{msg}}</span>
         </div>
-        <div :class="{'register-login':1,'disabled':show}">立即注册</div>
+        <div :class="{'register-login':1,'disabled':show!=''?1:show}" @click="register()">立即注册</div>
         <div class="register-login user-login"><router-link to="/login">用户密码登录</router-link></div>
-        <div><img src="/img/login.png" alt=""></div>
+        <div><img @click="info()" src="/img/login.png" alt=""></div>
     </div>
 </template>
 
 <script>
+import {Toast} from 'mint-ui'
 export default {
   name: "Register",
   data() {
     return {
         phone: "",
         uname: "",
-        password: "",
-        pass: "",
+        upwd: "",
+        upwd2: "",
         msg: "",
-        show: true
+        reg: /^1[34578]\d{9}$/
     }
   },
   methods: {
+      info() {
+        Toast({
+            message: '暂不支持',
+            position: 'bottom',
+            duration: 2000
+        });
+      },
         register () {
-            var reg = /^1[34578]\d{9}$/
             if(!this.phone) return this.msg = "手机号不能为空"
-            if(!reg.test(this.phone)) return this.msg = "手机格式不正确"
+            if(!this.reg.test(this.phone)) return this.msg = "手机格式不正确"
             if(!this.uname) return this.msg = "请设置用户名"
-            if(!this.password) return this.msg = "请设置密码"
-            if(!this.pass) return this.msg = "请再次输入密码"
-            if(this.password != this.pass) return this.msg = "两次密码不一致"
-            this.show = false;
-            this.$http.post('http://localhost:5050/user/register',`phone=${this.phone}&uname=${this.uname}&password=${this.password}`)
+            if(!this.upwd) return this.msg = "请设置密码"
+            if(!this.upwd2) return this.msg = "请再次输入密码"
+            if(this.upwd != this.upwd2) return this.msg = "两次密码不一致"
+            this.$http.post('http://localhost:5050/user/register',`phone=${this.phone}&uname=${this.uname}&upwd=${this.upwd}`)
                 .then(res =>{
                     console.log(res)
                 })
       }
   },
-  created() {},
   mounted() {
+  },
+  computed: {
+       show(){
+            if(this.reg.test(this.phone)&&this.uname&&this.upwd&&this.upwd == this.upwd2){
+            return false
+            }
+        }
+  },
+  watch: {
+        phone() {
+            this.msg = ""
+        },
+        uname() {
+            this.msg = ""
+        },
+        upwd() {
+            this.msg = ""
+        },
+        upwd2() {
+            this.msg = ""
+        }
+
   }
 };
 </script>
@@ -112,9 +139,7 @@ export default {
   margin-top: 1rem;
   border-radius: 0.4rem;
 }
-.register-login:active{
-    opacity: .8;
-}
+
 .user-login {
   background: #fff;
   color: #000;
@@ -123,4 +148,38 @@ export default {
 .disabled{
     background: #d3d3d3;
 }
+/* 提示start */
+.register-msg{
+    text-align: left;
+    color: #FF6666;
+    padding-top: .3rem;
+    font-size: .8rem;
+}
+.msg-icon{
+    width: 18px;
+    height: 18px;
+    margin: 0 5px 0 0;
+    overflow: hidden;
+    display: inline-block;
+    vertical-align: middle;
+    background-color: #ff6700;
+    border-radius: 50%;
+}
+.msg-icon::before,
+.msg-icon::after{
+    content: "";
+    display: block;
+    margin: 0 auto;
+    width: 2px;
+    background-color: #fff;
+}
+.msg-icon:before {
+    height: 7px;
+    margin-top: 2px;
+}
+.msg-icon:after {
+    height: 3px;
+    margin-top: 2px;
+}
+/* end */
 </style>

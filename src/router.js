@@ -15,6 +15,7 @@ import Tv from './components/home/Tv.vue'
 import Detail from './views/detail.vue'
 import Register from './views/register'
 import Login from './views/login'
+import search from './views/search'
 
 import demo from './views/demo'
 Vue.use(Router)
@@ -38,7 +39,7 @@ export default new Router({
         { path: '/detail/:pid', component: Detail},
         { path: '/register', component: Register},
         { path: '/login', component: Login},
-
+        { path: '/search', component: search},
         {
             path: "/demo", component: demo
         }

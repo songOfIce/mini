@@ -79,7 +79,6 @@ export default {
                     sessionStorage['uname'] = res.data.msg[0].uname;
                     Toast({message: '登录成功', duration: 1000})
                     setTimeout(function(){ location.href= '/home/commend'},1000)
-                   
                 }
         });
     },
@@ -236,6 +235,7 @@ export default {
     height: 3px;
     margin-top: 2px;
 }
+/* 提示end */
 .icon {
   display: inline-block;
   width: 0.7rem;
