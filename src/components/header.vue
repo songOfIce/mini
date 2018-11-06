@@ -6,9 +6,9 @@
         <div class="header-center">
             <img src="/img/search.png" alt="">
             <router-link to="/search">
-            <div class="header-center-box">
-                搜索商品名称
-            </div>
+                <div class="header-center-box">
+                    搜索商品名称
+                </div>
             </router-link>
         </div>
         <div class="header-right">

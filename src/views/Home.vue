@@ -1,13 +1,13 @@
 <template>
-  <div class="home">
-    <header-box/>
-    <nav-box/>
-    <footer-box></footer-box>
-    <transition :name="transitionName">
-        <router-view></router-view>
-    </transition>
-    <goTop />
-  </div>
+        <div class="home">
+            <header-box/>
+            <nav-box/>
+            <footer-box></footer-box>
+            <transition :name="transitionName">
+                <router-view></router-view>
+            </transition>
+            <goTop />
+        </div>
 </template>
 
 <script>
@@ -89,5 +89,18 @@ export default {
     }
     .slid-right-leave-active{
         transform: translate3d(100%,0,0);
+    }
+    /**/
+    .slid-enter-active,
+    .slid-leave-active{
+        will-change: transform;
+        transition: all .5s;
+        position: absolute;
+    }
+    .slid-enter{
+        transform: translate3d(-100%,0,0);
+    }
+    .slid-leave-active{
+        transform: translate3d(-100%,0,0);
     }
 </style>

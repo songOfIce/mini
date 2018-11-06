@@ -4,7 +4,7 @@
         <div style="font-size: 1.3rem;">小米账号注册</div>
         <div>
             <div class="register-phone">
-                <input class="input" type="text" v-model="phone" placeholder="手机号">
+                <input @blur="verification()" class="input" type="text" v-model="phone" placeholder="手机号">
             </div>
             <div class="register-phone">
                 <input class="input" type="text" v-model="uname" placeholder="用户名">
@@ -49,6 +49,15 @@ export default {
             duration: 2000
         });
       },
+      verification() {
+          if(this.phone) {
+              this.$http.get('http://localhost:5050/user/verification?phone='+this.phone)
+              .then(res => {
+                  if(res.data.code == -1)
+                  this.msg = "用户已存在"
+              })
+          }
+      },
         register () {
             if(!this.phone) return this.msg = "手机号不能为空"
             if(!this.reg.test(this.phone)) return this.msg = "手机格式不正确"
@@ -59,6 +68,11 @@ export default {
             this.$http.post('http://localhost:5050/user/register',`phone=${this.phone}&uname=${this.uname}&upwd=${this.upwd}`)
                 .then(res =>{
                     console.log(res)
+                    if(res.data.code ==1){
+                        this.$toast({message: '注册成功', duration: 1000})
+                        setTimeout(function(){location.href = '/login' },1000)
+                        
+                    }
                 })
       }
   },

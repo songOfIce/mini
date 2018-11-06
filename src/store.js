@@ -6,7 +6,8 @@ export default new Vuex.Store({
     state: {
         isDisplay: false,
         uid: sessionStorage['uid'],
-        product: ''
+        product: '',
+        jump: false
     },
     mutations: {
         // 显示隐藏
@@ -41,6 +42,9 @@ export default new Vuex.Store({
         //获取商品数据
         getProduct: function(state){
             return state.product
+        },
+        getjump: function(state){
+            return state.jump
         }
     }
 })

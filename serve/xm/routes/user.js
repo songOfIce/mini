@@ -92,4 +92,16 @@ router.get('/buy',(req,res)=>{
         res.send({code: 1, msg: "修改成功"})
     })
 })
+// 验证用户是否存在
+router.get('/verification',(req,res)=>{
+    var phone = req.query.phone
+    if(!phone) return res.send()
+    var sql = "SELECT uid FROM users WHERE phone=?"
+    pool.query(sql,[phone],(err,result)=>{
+        if(err) throw err;
+        if(result){
+            res.send({code: -1, msg: "用户已存在"})
+        }
+    })
+})
 module.exports = router;
