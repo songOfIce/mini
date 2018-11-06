@@ -11,7 +11,7 @@ router.post('/register',(req,res)=>{
     if(!phone) return res.send({code: -1, msg: "手机号不能为空"})
     if(!uname) return res.send({code: -1, msg: "用户名不能为空"})
     if(!upwd) return res.send({code: -1, msg: "请设置密码"})
-    var sql = "INSERT INTO users VALUES(null,?,?,?,?,'')"
+    var sql = "INSERT INTO users VALUES(null,?,?,?,?,'//s1.mi.com/m/images/m/default.png')"
     pool.query(sql,[phone,uname,upwd,phone],(err,result)=>{
         if(err) throw err;
         if(result.affectedRows > 0)

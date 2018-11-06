@@ -168,7 +168,7 @@ export default {
     line-height: 46px;
     padding-left: 50px;
     padding-right: 10px;
-    background: url('http://localhost:8085/img/cartnull.png') no-repeat 0;
+    background: url('/img/cartnull.png') no-repeat 0;
     background-size: auto 100%;
 }
 .car-item em{

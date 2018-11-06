@@ -16,25 +16,25 @@
             </div>
             <div class="user-login-three">
                 <a href="">
-                    <div><img src="http://localhost:8085/img/fukuan.png" alt="123"><p>代付款</p></div>
+                    <div><img src="/img/fukuan.png" alt="123"><p>代付款</p></div>
                 </a>
                 <a href="">
-                    <div><img src="http://localhost:8085/img/shouhuo.png" alt="123"><p>待收货</p></div>
+                    <div><img src="/img/shouhuo.png" alt="123"><p>待收货</p></div>
                 </a>
                 <a href="">
-                    <div><img src="http://localhost:8085/img/banshou.png" alt="123"><p>退返修</p></div>
+                    <div><img src="/img/banshou.png" alt="123"><p>退返修</p></div>
                 </a>
             </div>
         </div>
         <div class="fenge"></div>
         <div class="user-login-four">
-            <div class="user-login-four-item"><span><img class="icon" src="http://localhost:8085/img/huiyuan.png" alt="123">会员中心</span><img class="back" src="http://localhost:8085/img/back.png" alt=""></div>
-            <div class="user-login-four-item"><span><img class="icon" src="http://localhost:8085/img/me.png" alt="123">我的优惠</span><img class="back" src="http://localhost:8085/img/back.png" alt=""></div>
+            <div class="user-login-four-item"><span><img class="icon" src="/img/huiyuan.png" alt="123">会员中心</span><img class="back" src="/img/back.png" alt=""></div>
+            <div class="user-login-four-item"><span><img class="icon" src="/img/me.png" alt="123">我的优惠</span><img class="back" src="/img/back.png" alt=""></div>
         </div>
         <div class="fenge"></div>
         <div class="user-item">
-            <div class="user-login-five-item"><span><img class="icon" src="http://localhost:8085/img/serve.png" alt="123">服务中心</span><img class="back" src="http://localhost:8085/img/back.png" alt=""></div>
-            <div class="user-login-five-item"><span><img class="icon" src="http://localhost:8085/img/home.png" alt="123">小米之家</span><img class="back" src="http://localhost:8085/img/back.png" alt=""></div>
+            <div class="user-login-five-item"><span><img class="icon" src="/img/serve.png" alt="123">服务中心</span><img class="back" src="/img/back.png" alt=""></div>
+            <div class="user-login-five-item"><span><img class="icon" src="/img/home.png" alt="123">小米之家</span><img class="back" src="/img/back.png" alt=""></div>
         </div>
         <div class="fenge" style="height: 100px"></div>
         <!-- 登录之后的 退出登录 -->
@@ -49,7 +49,8 @@ export default {
     data(){
         return {
             show: sessionStorage['uid'],
-            uname: sessionStorage['uname']
+            uname: sessionStorage['uname'],
+            img: sessionStorage['img']
         }
     },
     methods: {
@@ -98,7 +99,7 @@ export default {
 /* end */
 .user-login .user-login-head{
     display: flex;
-    background: #f37d0f url("http://localhost:8085/img/bg.png") center 0;
+    background: #f37d0f url("/img/bg.png") center 0;
     background-size: auto 100%;
     padding: 20px 15px;
 }
