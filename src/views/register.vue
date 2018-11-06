@@ -7,7 +7,7 @@
                 <input @blur="verification()" class="input" type="text" v-model="phone" placeholder="手机号">
             </div>
             <div class="register-phone">
-                <input class="input" type="text" v-model="uname" placeholder="用户名">
+                <input class="input" type="text" v-model="uname" placeholder="昵称">
             </div>
             <div class="register-phone">
                 <input class="input" type="password" v-model="upwd" placeholder="密码">

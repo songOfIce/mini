@@ -45,6 +45,9 @@ export default new Vuex.Store({
         },
         getjump: function(state){
             return state.jump
+        },
+        getuid: function(state){
+            return state.uid
         }
     }
 })

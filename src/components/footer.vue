@@ -51,7 +51,11 @@ export default {
             }
         },
         badge() {
-            return this.$store.getters.getSingle
+            var num = 0;
+            for(var item of this.$store.getters.getProduct){
+                num += item.single
+            }
+            return num
         }
   }
 };

@@ -6,7 +6,7 @@
                         <img src="/img/back.png">
                     </div>
                 </div>
-                <div class="search-input"><input v-model="keyword" type="text" placeholder="搜索商品名称"></div>
+                <div class="search-input"><input @keydown="search()" v-model="keyword" type="text" placeholder="搜索商品名称"></div>
                 <div>
                     <div @click="search()">
                         <img src="/img/search.png">
@@ -34,7 +34,7 @@ export default {
     data() {
         return {
             keyword: "",
-            list: []
+            list: ''
         }
     },
     methods: {
@@ -45,9 +45,13 @@ export default {
             if(!this.keyword) return 
             this.$http.get('http://localhost:5050/home/search?key='+this.keyword)
                 .then(res =>{
-                    console.log(res)
                     this.list = res.data;
                 })
+        }
+    },
+    watch: {
+        keyword() {
+            this.search()
         }
     }
 }

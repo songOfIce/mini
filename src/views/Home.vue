@@ -18,7 +18,8 @@ import goTop from '../components/sub/goTop.vue'
 export default {
     data(){
         return {
-            transitionName: ""
+            transitionName: "",
+            uid: this.$store.getters.getuid
         }
     },
     methods: {
@@ -32,12 +33,24 @@ export default {
                 this.$store.commit("setShow")
 
             }
+        },
+        setData() {
+            if(this.uid != undefined){
+                this.$http.get('http://localhost:5050/user/find?uid='+this.uid)
+                    .then(res => {
+                        if(res.data.code == -1) console.log(res)
+                        this.data = res.data;
+                        this.$store.commit('setProduct',res.data)
+                    
+                    })
+            }
         }
     },
     mounted() {
-        window.addEventListener("scroll",this.handleScroll)
+        window.addEventListener("scroll",this.handleScroll);
     },
     created () {
+        this.setData();
     },
     components:{
         "header-box":header,
