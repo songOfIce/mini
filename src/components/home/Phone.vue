@@ -7,12 +7,6 @@
         </mt-swipe>
         <h3>现货热卖</h3>
         <List :imglist="list" />
-        <!-- <h3>红米系列</h3>
-        <List :imglist="imglist2" />
-        <h3>小米系列</h3>
-        <List :imglist="imglist3" />
-        <h3>小米移动</h3>
-        <List :imglist="imglist4" /> -->
     </div>
 </template>
 
@@ -25,10 +19,6 @@ export default {
         includedComponents: 'Phone',
         banner: [],
       list: [],
-      imglist1: [],
-      imglist2: [],
-      imglist3: [],
-      imglist4: []
     };
   },
   methods: {

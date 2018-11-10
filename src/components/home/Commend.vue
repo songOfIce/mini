@@ -7,20 +7,8 @@
             </mt-swipe-item>
         </mt-swipe>
         <Cell :cell="banner" />
-        <!-- 手机楼层 -->
-        <!-- <div class="commend-floor" v-if="imglist[0]">
-            <div><router-link to="#"><img :src="imglist[0].imgbig" alt=""></router-link></div>
-            <div>
-                <div class="commend-floor-item"><router-link to="#"><img :src="imglist[0].img" alt=""></router-link></div>
-                <div class="commend-floor-item"><router-link to="#"><img :src="imglist[1].img" alt=""></router-link></div>
-            </div>
-        </div> -->
         <h3>超值推荐</h3>
          <List :imglist="list" />
-       <!--  <h3>小米电视</h3>
-        <List :imglist="imgTvList" />
-        <h3>明星单品</h3> 
-        <List :imglist="imgStarList" /> -->
         <div class="understand">
             <img src="/img/understand.png" alt="">
         </div>   
@@ -37,9 +25,6 @@ export default {
       display: null,
       banner: [],
       list: []
-      // imglist: [],
-      // imgTvList: [],
-      // imgStarList: []
     };
   },
   methods: {

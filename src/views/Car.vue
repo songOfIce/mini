@@ -77,7 +77,6 @@ export default {
                     if(res.data.code == -1) return console.log(res)
                     this.data = res.data;
                     this.$store.commit('setProduct',res.data)
-                
                 })
         }
     },
