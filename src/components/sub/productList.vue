@@ -25,13 +25,10 @@ export default {
       isC: false
     };
   },
-//   props: ["data"],
   methods: {
     del(id, i) {
       this.$http.get("http://localhost:5050/user/del?id=" + id).then(res => {
-        // if (res.data.code == 1) this.data.splice(i, 1);
       });
-    //   console.log(i)
     this.$store.commit("updateProduct", i);
     }
   },

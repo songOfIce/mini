@@ -28,7 +28,6 @@ router.get('/search',(req,res)=>{
     if(!key) res.send()
     var sql = "SELECT * FROM product WHERE concat(title,subtitle,option) LIKE '%";
     sql += key + "%'";
-    console.log(sql,key)
     pool.query(sql,(err,result)=>{
         if(err) throw err;
         res.send(result)

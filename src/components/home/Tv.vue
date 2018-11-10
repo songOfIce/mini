@@ -17,6 +17,7 @@ export default {
     name: "Tv",
     data () {
         return {
+            includedComponents: 'Tv',
             banner: [],
             list: []
         }

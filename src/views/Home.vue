@@ -3,9 +3,11 @@
             <header-box/>
             <nav-box/>
             <footer-box></footer-box>
-            <transition :name="transitionName">
-                <router-view></router-view>
-            </transition>
+                <transition :name="transitionName">
+            <keep-alive :include="/Commend|Laptop|Phone|Smart|Tv|Products/">
+                    <router-view></router-view>
+            </keep-alive>
+                </transition>
             <goTop />
         </div>
 </template>
@@ -16,10 +18,12 @@ import nav from '../components/nav.vue'
 import Footer from '../components/footer.vue'
 import goTop from '../components/sub/goTop.vue'
 export default {
+    name: 'Home',
     data(){
         return {
             transitionName: "",
-            uid: this.$store.getters.getuid
+            uid: this.$store.getters.getuid,
+            includedComponents: 'Home'
         }
     },
     methods: {
@@ -34,23 +38,9 @@ export default {
 
             }
         },
-        setData() {
-            if(this.uid != undefined){
-                this.$http.get('http://localhost:5050/user/find?uid='+this.uid)
-                    .then(res => {
-                        if(res.data.code == -1) console.log(res)
-                        this.data = res.data;
-                        this.$store.commit('setProduct',res.data)
-                    
-                    })
-            }
-        }
     },
     mounted() {
         window.addEventListener("scroll",this.handleScroll);
-    },
-    created () {
-        this.setData();
     },
     components:{
         "header-box":header,

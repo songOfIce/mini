@@ -4,7 +4,7 @@
           <router-link :to="item.path">
             <img :src="url==item.path?item.img2:item.img1">
             <p :class="url==item.path?'active':''">{{item.name}}</p>
-            <mt-badge type="error" size="small" v-if="item.name=='购物车'&&badge">{{badge}}</mt-badge>
+            <mt-badge type="error" size="small" v-if="item.name=='购物车'">1</mt-badge>
           </router-link>
         </div>
     </div> 
@@ -49,13 +49,6 @@ export default {
             }else{
                 return  this.$route.path
             }
-        },
-        badge() {
-            var num = 0;
-            for(var item of this.$store.getters.getProduct){
-                num += item.single
-            }
-            return num
         }
   }
 };

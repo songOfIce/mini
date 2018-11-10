@@ -72,18 +72,16 @@ export default {
                 .then(res =>{
                     this.list = res.data.list;
                 });
-            if(this.uid != undefined){
-                this.$http.get('http://localhost:5050/user/find?uid='+this.uid)
-                    .then(res => {
-                        if(res.data.code == -1) console.log(res)
-                        this.data = res.data;
-                        this.$store.commit('setProduct',res.data)
-                    
-                    })
-            }
+            this.$http.get('http://localhost:5050/user/find?uid='+this.uid)
+                .then(res => {
+                    if(res.data.code == -1) return console.log(res)
+                    this.data = res.data;
+                    this.$store.commit('setProduct',res.data)
+                
+                })
         }
     },
-    created() {
+    mounted() {
         this.getData();
     },
     components: {

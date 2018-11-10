@@ -79,7 +79,7 @@ export default {
                     sessionStorage['uname'] = res.data.msg[0].uname;
                     sessionStorage['img'] = res.data.msg[0].img
                     Toast({message: '登录成功', duration: 1000})
-                    setTimeout(function(){ location.href= '/home/commend'},1000)
+                    setTimeout(function(){ location.href= '/#/home/commend'},1000)
                 }
         });
     },

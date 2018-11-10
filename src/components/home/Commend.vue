@@ -33,6 +33,7 @@ export default {
   name: "Commend",
   data() {
     return {
+    includedComponents: "Commend",
       display: null,
       banner: [],
       list: []
@@ -46,12 +47,13 @@ export default {
       this.$http
         .get("http://localhost:5050/home/banner?name=commend")
         .then(data => {
+        console.log(123)
           this.banner = data.data.banner;
           this.list = data.data.list;
         });
     }
   },
-  created() {
+    mounted() {
     this.getData();
     
   },

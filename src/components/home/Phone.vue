@@ -22,6 +22,7 @@ export default {
   name: "Phone",
   data() {
     return {
+        includedComponents: 'Phone',
         banner: [],
       list: [],
       imglist1: [],

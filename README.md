@@ -40,3 +40,7 @@ enter,enter-active,leave,leave-active并且在路由词典里加一个meta:{inde
     <i class="mint-toast-icon mintui mintui-field-success"></i> 
 8.-webkit- a标签点击是背景蓝色高亮取消: 
         -webkit-tap-highlight-color:transparent;
+
+9.使用keep-alive来缓存页面,不必重新渲染DOM
+    <keep-alive include="需要缓存的组件名(使用正则)"></keep-alive>
+    解决: 防止重复发送Ajax

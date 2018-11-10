@@ -1,6 +1,7 @@
 const express = require("express"); 
 const bodyParser = require("body-parser"); //字符串解析模块
 const cors = require("cors"); //引入跨域模块
+const history = require('connect-history-api-fallback');//结合vue history模式
 // 上传文件模块
 const multer = require('multer');
 var upload = multer({dest: "upload/"});
@@ -14,7 +15,7 @@ app.listen(5050,()=>{console.log("success: "+ port)});
 // wechat 配置
 
 
-
+app.use(history());
 // 引入路由
 const home = require("./routes/home.js");
 const fenlei = require('./routes/fenlei.js');

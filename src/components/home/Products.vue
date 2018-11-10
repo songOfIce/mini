@@ -17,6 +17,7 @@ export default {
     name: "Products",
     data () {
         return {
+            includedComponents: 'Products',
             list: [],
             banner: []
         }

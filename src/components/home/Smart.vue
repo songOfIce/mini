@@ -17,6 +17,7 @@ export default {
     name: "Smart",
     data () {
         return {
+            includedComponents: 'Smart',
             banner: [],
             list: [],
         }

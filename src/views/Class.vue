@@ -63,7 +63,6 @@ export default {
                 })
         },
         active(i) {
-            // e.preventDefault();
             var a = document.querySelectorAll(".sidebar>ul>li>a");
             for(let i = 0;i<a.length;i++){
                 a[i].className = "";
@@ -73,17 +72,6 @@ export default {
     },
     created () {
         this.getData();
-    },
-    mounted() {
-        window.onscroll = function(){
-            var t = document.documentElement.scrollTop;
-            // console.log(t)
-            if(t>1000){
-                var a = document.querySelectorAll(".sidebar>ul>li>a");
-                // console.log(a[a.length-1])
-                // a[10].scrollIntoView(false);
-            }
-        }
     },
     components: {
         Footer,

@@ -73,7 +73,6 @@
                 <div class="car-badge"> 
                     <img src="/img/car.png" alt=""> 
                     <p class="cart-title">购物车</p>
-                    <mt-badge type="error" size="small" v-show="badge">{{badge}}</mt-badge>
                 </div>
                 </router-link>
             </div>
@@ -98,7 +97,7 @@ export default {
         img: [],
         icon: [],
         pid: this.$route.params.pid,
-        uid: sessionStorage["uid"]
+        uid: sessionStorage["uid"],
         };
     },
     methods: {
@@ -110,13 +109,11 @@ export default {
             this.info = res.data.info[0];
             this.icon = res.data.icon;
             });
-             
         },
         goback() {
         history.go(-1);
         },
         add() {
-        //   console.log(this.uid);
         if (this.uid == undefined) {
             MessageBox({
                 title: "提示",
@@ -127,14 +124,10 @@ export default {
                 this.$router.push('/login')
             }else return;
             });
-            
         }else{
             this.$http.post("http://localhost:5050/user/add",`pid=${this.pid}&uid=${this.uid}&title=${this.info.option.slice(0,-3)}&price=${this.info.price}&img=${this.img[0].img}`).then(res => {
-                // console.log(res);
                 if(res.data.code) Toast({message: '添加成功',iconClass: 'mint-toast-icon mintui mintui-success',duration: 1000});;
-                
             });
-           
         }
         }
     },
@@ -143,22 +136,6 @@ export default {
     },
     components: {
         goTop
-    },
-    computed: {
-        badge() {
-            if(this.uid != undefined){
-                this.$http.get('http://localhost:5050/user/find?uid='+this.uid)
-                    .then(res => {
-                        if(res.data.code == -1) console.log(res)
-                        this.$store.commit('setProduct',res.data)
-                    })
-            }
-            var num = 0;
-            for(var item of this.$store.getters.getProduct){
-                num += item.single
-            }
-            return num
-        }
     }
 };
 </script>

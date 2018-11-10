@@ -15,7 +15,7 @@ import Mock from './mock'
 
 Vue.prototype.$http = Axios
 
-Vue.config.productionTip = true
+Vue.config.productionTip = false
 //公共js
 Vue.prototype.common = common;
 // 原型加入axios
