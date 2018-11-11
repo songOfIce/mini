@@ -44,3 +44,7 @@ enter,enter-active,leave,leave-active并且在路由词典里加一个meta:{inde
 9.使用keep-alive来缓存页面,不必重新渲染DOM
     <keep-alive include="需要缓存的组件名(使用正则)"></keep-alive>
     解决: 防止重复发送Ajax
+10. 如果使用history模式
+    问题：打包后在服务器访问，刷新后找不到页面
+    解决：1.注释掉 history
+        2. 在nodeserver中添加 connect-history-api-fallback 中间件
