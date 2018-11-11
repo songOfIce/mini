@@ -547,7 +547,7 @@ CREATE TABLE product(
     title VARCHAR(24),
     subtitle VARCHAR(255),
     price VARCHAR(12),
-    option  VARCHAR(255),
+    opt  VARCHAR(255),
     label VARCHAR(120)
 );
 INSERT INTO product VALUES(null,1,'小米8 青春版','潮流镜面渐变色 / 2400万自拍旗舰 / 7.5mm超薄机身 / 6.26"小刘海全面屏 / AI裸妆美颜 / 骁龙660AIE处理器','1399','小米8 青春版 4GB+64GB 深空灰 x 1','「现货在售」「赠送标准高透贴膜」');
