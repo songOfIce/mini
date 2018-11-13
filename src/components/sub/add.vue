@@ -25,7 +25,7 @@ export default {
                 this.single++
                 this.$store.commit('single',{'i':this.i,'s':this.single})
             }
-            this.$http.get('http://localhost:5050/user/sum?single='+this.single+'&id='+this.p)
+            this.$http.get('/user/sum?single='+this.single+'&id='+this.p)
                 .then(res =>{
                     if(res.data.code == -1) console.log(res.data.msg)
                 })

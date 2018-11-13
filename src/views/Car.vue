@@ -68,11 +68,11 @@ export default {
     },
     methods: {
         getData() {
-            this.$http.get("http://localhost:5050/home/banner?name=commend")
+            this.$http.get("/home/banner?name=commend")
                 .then(res =>{
                     this.list = res.data.list;
                 });
-            this.$http.get('http://localhost:5050/user/find?uid='+this.uid)
+            this.$http.get('/user/find?uid='+this.uid)
                 .then(res => {
                     if(res.data.code == -1) return console.log(res)
                     this.data = res.data;

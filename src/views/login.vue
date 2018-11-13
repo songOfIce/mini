@@ -72,7 +72,7 @@ export default {
         if(!this.upwd) return this.msg = "请输入密码";
         if(this.verification.toLocaleLowerCase() != this.getcode.content || this.verification == "") return this.msg = "验证码不正确";
         // console.log(this.uid,this.upwd)
-        this.$http.post("http://localhost:5050/user/login",`uid=${this.uid}&upwd=${this.upwd}`).then(res =>{
+        this.$http.post("/user/login",`uid=${this.uid}&upwd=${this.upwd}`).then(res =>{
                 if(res.data.code == -1) this.msg = res.data.msg
                 else {
                     sessionStorage["uid"] = res.data.msg[0].uid;

@@ -14,7 +14,7 @@ export default {
     methods: {
         toggle() {
             this.isC = !this.isC;
-            this.$http.get('http://localhost:5050/user/buy?isbuy='+this.isC+"&id="+this.data.id).then(res =>{
+            this.$http.get('/user/buy?isbuy='+this.isC+"&id="+this.data.id).then(res =>{
                 if(res.data.code == -1)
                 console.log(res)
             })

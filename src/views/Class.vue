@@ -42,7 +42,6 @@
 </template>
 
 <script>
-import Content from '../components/class/Content.vue'
 import Footer from '../components/footer.vue'
 import goTop from '../components/sub/goTop.vue'
 export default {
@@ -56,7 +55,7 @@ export default {
     },
     methods: {
         getData() {
-            this.$http.get("http://localhost:5050/fenlei")
+            this.$http.get("/fenlei")
                 .then(res =>{
                     this.box = res.data.box;
                     this.page = res.data.page;

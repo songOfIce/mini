@@ -103,7 +103,7 @@ export default {
     methods: {
         getData() {
         this.$http
-            .get("http://localhost:5050/home/detail?pid=" + this.pid)
+            .get("/home/detail?pid=" + this.pid)
             .then(res => {
             this.img = res.data.img;
             this.info = res.data.info[0];
@@ -125,7 +125,7 @@ export default {
             }else return;
             });
         }else{
-            this.$http.post("http://localhost:5050/user/add",`pid=${this.pid}&uid=${this.uid}&title=${this.info.opt.slice(0,-3)}&price=${this.info.price}&img=${this.img[0].img}`).then(res => {
+            this.$http.post("/user/add",`pid=${this.pid}&uid=${this.uid}&title=${this.info.opt.slice(0,-3)}&price=${this.info.price}&img=${this.img[0].img}`).then(res => {
                 if(res.data.code) Toast({message: '添加成功',iconClass: 'mint-toast-icon mintui mintui-success',duration: 1000});;
             });
         }

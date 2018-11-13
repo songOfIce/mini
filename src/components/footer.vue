@@ -4,7 +4,7 @@
           <router-link :to="item.path">
             <img :src="url==item.path?item.img2:item.img1">
             <p :class="url==item.path?'active':''">{{item.name}}</p>
-            <mt-badge type="error" size="small" v-if="item.name=='购物车'">1</mt-badge>
+            <mt-badge type="error" size="small" v-if="item.name=='购物车'"></mt-badge>
           </router-link>
         </div>
     </div> 

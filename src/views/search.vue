@@ -43,7 +43,7 @@ export default {
             history.go(-1) },
         search() {
             if(!this.keyword) return 
-            this.$http.get('http://localhost:5050/home/search?key='+this.keyword)
+            this.$http.get('/home/search?key='+this.keyword)
                 .then(res =>{
                     this.list = res.data;
                 })

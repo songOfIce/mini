@@ -27,7 +27,7 @@ export default {
   },
   methods: {
     del(id, i) {
-      this.$http.get("http://localhost:5050/user/del?id=" + id).then(res => {
+      this.$http.get("/user/del?id=" + id).then(res => {
       });
     this.$store.commit("updateProduct", i);
     }
@@ -43,7 +43,7 @@ export default {
   }
 };
 </script>
-<style lang="scss" scoped>
+<style scoped>
 .productList {
   display: flex;
   font-size: 0.9rem;
@@ -68,7 +68,7 @@ export default {
   font-size: 0.6rem;
   color: #b1b1b1;
 }
-//    删除
+/* 删除 */
 .delete {
   position: absolute;
   right: 5px;
