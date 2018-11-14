@@ -2,7 +2,7 @@
     <div class="nav">
        <ul>
            <li v-for="(item,i) in list" :key="i">
-               <router-link :to="'/home/'+router[i]"> {{item}}</router-link>
+               <router-link :to="'http://localhost:5050/home/'+router[i]"> {{item}}</router-link>
             </li>
        </ul>
     </div>

@@ -4,7 +4,7 @@
           <router-link :to="item.path">
             <img :src="url==item.path?item.img2:item.img1">
             <p :class="url==item.path?'active':''">{{item.name}}</p>
-            <mt-badge type="error" size="small" v-if="item.name=='购物车'"></mt-badge>
+            <mt-badge type="error" size="small" v-if="item.name=='购物车'&& badge">{{badge}}</mt-badge>
           </router-link>
         </div>
     </div> 
@@ -17,7 +17,7 @@ export default {
       list: [
         {
           name: "首页",
-          path: "/home/commend",
+          path: "http://localhost:5050/home/commend",
           img1: "/img/index.png",
           img2: "/img/index1.png"
         },
@@ -45,11 +45,14 @@ export default {
   computed: {
       url(){
             if(this.$route.path.indexOf("home") !=-1){
-                return "/home/commend"
+                return "http://localhost:5050/home/commend"
             }else{
                 return  this.$route.path
             }
-        }
+        },
+      badge(){
+        return  this.$store.getters.getSingle
+      }
   }
 };
 </script>

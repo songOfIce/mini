@@ -63,8 +63,8 @@
         <goTop />
         <div class="cart">
             <div class="cart-link">
-                <router-link to="/home/commend">
-                <div to="/home/commend" target="div"> 
+                <router-link to="http://localhost:5050/home/commend">
+                <div to="http://localhost:5050/home/commend" target="div"> 
                     <img src="/img/index.png" alt=""> 
                     <p class="cart-title">首页</p>
                 </div>
@@ -73,6 +73,7 @@
                 <div class="car-badge"> 
                     <img src="/img/car.png" alt=""> 
                     <p class="cart-title">购物车</p>
+                    <mt-badge type="error" size="small" v-if="badge">{{badge}}</mt-badge>
                 </div>
                 </router-link>
             </div>
@@ -102,8 +103,8 @@ export default {
     },
     methods: {
         getData() {
-        this.$http
-            .get("/home/detail?pid=" + this.pid)
+          this.$http
+            .get("http://localhost:5050/home/detail?pid=" + this.pid)
             .then(res => {
             this.img = res.data.img;
             this.info = res.data.info[0];
@@ -111,7 +112,7 @@ export default {
             });
         },
         goback() {
-        history.go(-1);
+          history.go(-1);
         },
         add() {
         if (this.uid == undefined) {
@@ -125,10 +126,17 @@ export default {
             }else return;
             });
         }else{
-            this.$http.post("/user/add",`pid=${this.pid}&uid=${this.uid}&title=${this.info.opt.slice(0,-3)}&price=${this.info.price}&img=${this.img[0].img}`).then(res => {
-                if(res.data.code) Toast({message: '添加成功',iconClass: 'mint-toast-icon mintui mintui-success',duration: 1000});;
+            this.$http.post("http://localhost:5050/user/add",`pid=${this.pid}&uid=${this.uid}&title=${this.info.opt.slice(0,-3)}&price=${this.info.price}&img=${this.img[0].img}`).then(res => {
+                if(res.data.code) Toast({message: '添加成功',iconClass: 'mint-toast-icon mintui mintui-success',duration: 1000});
             });
-        }
+            this.$http.get('http://localhost:5050/user/find?uid='+this.uid)
+                .then(res => {
+                    if(res.data.code == -1) return console.log(res)
+                    this.data = res.data;
+                    this.$store.commit('setProduct',res.data)
+            
+                })
+            }
         }
     },
     created() {
@@ -136,6 +144,11 @@ export default {
     },
     components: {
         goTop
+    },
+    computed: {
+       badge(){
+          return  this.$store.getters.getSingle
+        }
     }
 };
 </script>

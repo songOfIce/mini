@@ -38,7 +38,8 @@ export default {
         upwd: "",
         upwd2: "",
         msg: "",
-        reg: /^1[34578]\d{9}$/
+        reg: /^1[34578]\d{9}$/,
+        isGot: false
     }
   },
   methods: {
@@ -51,27 +52,33 @@ export default {
       },
       verification() {
           if(this.phone) {
-              this.$http.get('/user/verification?phone='+this.phone)
+              if(!this.reg.test(this.phone)){
+                return this.msg = "手机格式不正确"
+              }
+              this.$http.get('http://localhost:5050/user/verification?phone='+this.phone)
               .then(res => {
-                  if(res.data.code == -1)
-                  this.msg = "用户已存在"
+                  if(res.data.code == -1){
+                    return this.msg = "用户已存在"
+                  }else{
+                    return this.isGot = true
+                  }
+                  
               })
+              
           }
       },
         register () {
+            if(!this.isGot) return this.msg = "用户已存在"
             if(!this.phone) return this.msg = "手机号不能为空"
-            if(!this.reg.test(this.phone)) return this.msg = "手机格式不正确"
             if(!this.uname) return this.msg = "请设置用户名"
             if(!this.upwd) return this.msg = "请设置密码"
             if(!this.upwd2) return this.msg = "请再次输入密码"
             if(this.upwd != this.upwd2) return this.msg = "两次密码不一致"
-            this.$http.post('/user/register',`phone=${this.phone}&uname=${this.uname}&upwd=${this.upwd}`)
+            this.$http.post('http://localhost:5050/user/register',`phone=${this.phone}&uname=${this.uname}&upwd=${this.upwd}`)
                 .then(res =>{
-                    console.log(res)
                     if(res.data.code ==1){
-                        this.$toast({message: '注册成功', duration: 1000})
-                        setTimeout(()=>this.$router.push('/login') ,1000)
-                        
+                      this.$toast({message: '注册成功', duration: 1000})
+                      setTimeout(()=>this.$router.push('/login') ,1000)
                     }
                 })
       }
@@ -81,7 +88,7 @@ export default {
   computed: {
        show(){
             if(this.reg.test(this.phone)&&this.uname&&this.upwd&&this.upwd == this.upwd2){
-            return false
+              return false
             }
         }
   },

@@ -66,20 +66,18 @@ export default {
     },
     //   登录
     login() {
-        var reg = /^1[34578]\d{9}$/;
         if(!this.uid) return this.msg = "请输入账号";
-        if(!reg.test(this.uid)) return this.msg = "用户名不正确";
         if(!this.upwd) return this.msg = "请输入密码";
         if(this.verification.toLocaleLowerCase() != this.getcode.content || this.verification == "") return this.msg = "验证码不正确";
         // console.log(this.uid,this.upwd)
-        this.$http.post("/user/login",`uid=${this.uid}&upwd=${this.upwd}`).then(res =>{
+        this.$http.post("http://localhost:5050/user/login",`uid=${this.uid}&upwd=${this.upwd}`).then(res =>{
                 if(res.data.code == -1) this.msg = res.data.msg
                 else {
                     sessionStorage["uid"] = res.data.msg[0].uid;
                     sessionStorage['uname'] = res.data.msg[0].uname;
                     sessionStorage['img'] = res.data.msg[0].img
                     Toast({message: '登录成功', duration: 1000})
-                    setTimeout(()=>{ this.$router.push('/home/commend')},1000)
+                    setTimeout(()=>{ this.$router.push('http://localhost:5050/home/commend')},1000)
                 }
         });
     },

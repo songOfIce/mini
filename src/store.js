@@ -48,6 +48,13 @@ export default new Vuex.Store({
         },
         getuid: function(state){
             return state.uid
+        },
+        getSingle: function(state){
+          let num = 0;
+          for(let item of state.product){
+            num += item.single
+          }
+          return num
         }
     }
 })

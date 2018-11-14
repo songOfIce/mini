@@ -1,5 +1,5 @@
 <template>
-    <div v-if="goodsList[0] != ''">
+    <div v-if="goodsList != ''">
         <div class="productList" v-if="item.id" v-for="(item,i) in goodsList" :key="i">
             <div class="select">
                 <checkbox :data="{'isbuy':item.isbuy,'id':item.id,'i':i}" />
@@ -27,7 +27,7 @@ export default {
   },
   methods: {
     del(id, i) {
-      this.$http.get("/user/del?id=" + id).then(res => {
+      this.$http.get("http://localhost:5050/user/del?id=" + id).then(res => {
       });
     this.$store.commit("updateProduct", i);
     }

@@ -24,7 +24,7 @@ export default {
     },
     methods: {
         getData () {
-            this.$http.get("/home/banner?name=smart")
+            this.$http.get("http://localhost:5050/home/banner?name=smart")
                 .then(res =>{
                     this.banner = res.data.banner;
                     this.list = res.data.list;

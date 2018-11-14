@@ -52,7 +52,6 @@ router.post('/add',(req,res)=>{
 // 查找用户购物车
 router.get('/find',(req,res)=>{
     var uid = req.query.uid
-    console.log(uid)
     if(!uid) return res.send({code: -1, msg: "未登录"})
     var sql = "SELECT * FROM user_product WHERE uid=? ";
     pool.query(sql,[uid],(err,result)=>{
@@ -100,9 +99,12 @@ router.get('/verification',(req,res)=>{
     if(!phone) return res.send()
     var sql = "SELECT uid FROM users WHERE phone=?"
     pool.query(sql,[phone],(err,result)=>{
+      console.log(result)
         if(err) throw err;
-        if(result){
+        if(result.length>0){
             res.send({code: -1, msg: "用户已存在"})
+        }else{
+          res.send({code:1})
         }
     })
 })

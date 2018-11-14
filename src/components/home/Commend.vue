@@ -30,9 +30,8 @@ export default {
   methods: {
     getData() {
       this.$http
-        .get("/home/banner?name=commend")
+        .get("http://localhost:5050/home/banner?name=commend")
         .then(data => {
-        console.log(123)
           this.banner = data.data.banner;
           this.list = data.data.list;
         });
