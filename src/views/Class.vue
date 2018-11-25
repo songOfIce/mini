@@ -55,7 +55,7 @@ export default {
     },
     methods: {
         getData() {
-            this.$http.get("/fenlei")
+            this.$http.get("http://localhost:5050/fenlei")
                 .then(res =>{
                     this.box = res.data.box;
                     this.page = res.data.page;

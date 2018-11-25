@@ -22,7 +22,7 @@
             </div>
             <div>
                 <router-link :to="'/detail/'+item.pid" v-for="(item,i) in list" :key="i">
-                <p class="search-res">{{item.option.slice(0,-3)}}</p>
+                <p class="search-res">{{item.opt.slice(0,-3)}}</p>
                 </router-link>
             </div>
         </div>
